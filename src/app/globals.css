@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Base ───────────────────────────────────────────────────── */
+@layer base {
+  html { scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { text-decoration: none; }
+}
+
+/* ── Reusable component classes ─────────────────────────────── */
+@layer components {
+
+  /* Content-width wrapper used on every section */
+  .section-wrap {
+    @apply mx-auto w-full max-w-content px-8 lg:px-16;
+  }
+
+  /* Eyebrow label above headings */
+  .eyebrow {
+    @apply text-[10px] font-semibold uppercase tracking-eyebrow;
+  }
+
+  /* Nav link with animated bottom underline */
+  .nav-link {
+    @apply relative inline-block text-[13px] text-smoke
+           tracking-[0.04em] transition-colors duration-200
+           hover:text-charcoal;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-[3px] left-0 h-px w-0 bg-navy
+           transition-[width] duration-300 ease-out;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after { @apply w-full; }
+  .nav-link.active        { @apply text-charcoal; }
+
+  /* Primary CTA button */
+  .btn-primary {
+    @apply inline-block bg-navy text-white text-[11px] font-semibold
+           uppercase tracking-[0.1em] px-9 py-[15px] rounded-[3px]
+           hover:bg-[#16293f] active:bg-[#121f2e]
+           transition-colors duration-200 cursor-pointer
+           focus-visible:outline focus-visible:outline-2
+           focus-visible:outline-offset-2 focus-visible:outline-navy;
+  }
+
+  /* Thin gold decorative rule (horizontal accent) */
+  .gold-rule {
+    @apply block w-10 h-px bg-gold;
+  }
+
+  /* Pill / tag badges */
+  .tag-active   { @apply bg-navy-tint text-navy   text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
+  .tag-growth   { @apply bg-gold-tint text-[#A07820] text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
+  .tag-exited   { @apply bg-[#F0F0F0] text-smoke  text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
+  .tag-video    { @apply bg-[#F0EDE8] text-smoke  text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
+  .tag-podcast  { @apply bg-navy-tint text-navy   text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
+  .tag-press    { @apply bg-gold-tint text-[#A07820] text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
+}
+
+/* ── Animation utilities ─────────────────────────────────────── */
+@layer utilities {
+  .anim-fade-up    { animation: fadeUp 0.65s ease-out        both; }
+  .anim-fade-up-d1 { animation: fadeUp 0.65s ease-out 0.12s  both; }
+  .anim-fade-up-d2 { animation: fadeUp 0.65s ease-out 0.24s  both; }
+  .anim-fade-up-d3 { animation: fadeUp 0.65s ease-out 0.36s  both; }
+  .anim-fade-up-d4 { animation: fadeUp 0.65s ease-out 0.48s  both; }
+}

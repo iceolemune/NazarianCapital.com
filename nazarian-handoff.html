@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nazarian Capital — Project Handoff</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #F8F6F2; color: #1A1A1A; }
+
+/* NAV */
+.doc-nav {
+  background: #1C3557; height: 56px; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 48px; position: sticky; top: 0; z-index: 100;
+}
+.doc-nav-logo { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; color: #FFF; }
+.doc-nav-links { display: flex; gap: 28px; }
+.doc-nav-links a { font-size: 12px; color: rgba(255,255,255,0.7); text-decoration: none; cursor: pointer; }
+.doc-nav-links a:hover { color: #FFF; }
+
+/* SECTIONS */
+.section { padding: 64px 48px; border-bottom: 1px solid #E5E2DC; max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #C9A84C; margin-bottom: 12px; }
+.section h2 { font-size: 28px; font-weight: 300; color: #1A1A1A; margin-bottom: 8px; }
+.section-desc { font-size: 14px; color: #6B6B6B; margin-bottom: 40px; line-height: 1.7; }
+
+/* TABS */
+.tabs { display: flex; gap: 0; border-bottom: 1px solid #E5E2DC; margin-bottom: 40px; }
+.tab { padding: 12px 24px; font-size: 13px; font-weight: 500; color: #6B6B6B; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tab.active { color: #1C3557; border-bottom-color: #1C3557; }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* DESIGN TOKENS */
+.tokens-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.token-group h3 { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #9B9B9B; margin-bottom: 20px; }
+.color-row { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.color-swatch { width: 40px; height: 40px; border-radius: 4px; flex-shrink: 0; border: 1px solid #E5E2DC; }
+.color-info { display: flex; flex-direction: column; gap: 2px; }
+.color-name { font-size: 13px; font-weight: 600; color: #1A1A1A; }
+.color-hex { font-size: 12px; color: #6B6B6B; font-family: monospace; }
+.font-row { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #F0EDE8; }
+.font-row:last-child { border-bottom: none; }
+.font-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #9B9B9B; margin-bottom: 8px; }
+.font-preview { color: #1A1A1A; }
+.font-spec { font-size: 11px; color: #9B9B9B; margin-top: 4px; }
+
+/* COPY SECTIONS */
+.copy-page { margin-bottom: 48px; }
+.copy-page-title { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #1C3557; padding: 10px 16px; background: #EBF0F6; border-radius: 3px; margin-bottom: 20px; }
+.copy-block { margin-bottom: 24px; padding: 20px 24px; background: #FFF; border-radius: 4px; border-left: 3px solid #E5E2DC; }
+.copy-block-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #9B9B9B; margin-bottom: 8px; }
+.copy-block p, .copy-block li { font-size: 14px; color: #1A1A1A; line-height: 1.75; }
+.copy-block ul { padding-left: 20px; }
+.copy-block li { margin-bottom: 6px; }
+.copy-block h3 { font-size: 15px; font-weight: 600; color: #1A1A1A; margin-bottom: 8px; }
+.copy-block h4 { font-size: 12px; font-weight: 600; color: #6B6B6B; margin: 14px 0 6px; }
+
+/* MEDIA TABLE */
+.media-table { width: 100%; border-collapse: collapse; }
+.media-table th { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #9B9B9B; text-align: left; padding: 10px 16px; border-bottom: 2px solid #E5E2DC; }
+.media-table td { font-size: 13px; color: #1A1A1A; padding: 14px 16px; border-bottom: 1px solid #F0EDE8; vertical-align: top; }
+.media-table tr:last-child td { border-bottom: none; }
+.media-table a { color: #1C3557; text-decoration: none; }
+.media-table a:hover { text-decoration: underline; }
+.tag-sm { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; white-space: nowrap; }
+.tag-sm.video { background: #F0EDE8; color: #6B6B6B; }
+.tag-sm.podcast { background: #EBF0F6; color: #1C3557; }
+.tag-sm.press { background: #FBF6EC; color: #A07820; }
+.source-name { font-size: 11px; color: #9B9B9B; margin-top: 3px; }
+
+/* MOCKUP EMBED */
+.mockup-wrap { width: 100%; border: 1px solid #E5E2DC; border-radius: 6px; overflow: hidden; background: #FFF; }
+.mockup-bar { background: #F0EDE8; padding: 10px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #E5E2DC; }
+.mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mockup-url { flex: 1; background: #FFF; border-radius: 3px; padding: 4px 12px; font-size: 11px; color: #9B9B9B; margin: 0 8px; }
+
+/* SITE MOCKUP STYLES */
+.site-nav { background: #F8F6F2; border-bottom: 1px solid #E5E2DC; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; }
+.site-logo-wrap { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.site-logo-divider { width: 1px; height: 26px; background: #E5E2DC; }
+.site-logo-text { display: flex; flex-direction: column; gap: 1px; }
+.site-logo-name { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; color: #1A1A1A; }
+.site-logo-sub { font-size: 10px; font-weight: 300; letter-spacing: 0.3em; color: #6B6B6B; }
+.site-nav-links { display: flex; gap: 28px; }
+.site-nav-links a { font-size: 12px; color: #6B6B6B; text-decoration: none; cursor: pointer; }
+.site-nav-links a.active, .site-nav-links a:hover { color: #1A1A1A; }
+
+.site-page { display: none; }
+.site-page.active { display: block; }
+
+.eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: #6B6B6B; text-transform: uppercase; margin-bottom: 14px; }
+.eyebrow.navy { color: #1C3557; }
+.site-divider { height: 1px; background: #E5E2DC; }
+.site-btn { display: inline-block; background: #1C3557; color: #FFF; font-size: 12px; font-weight: 500; padding: 13px 32px; border-radius: 3px; text-decoration: none; cursor: pointer; letter-spacing: 0.06em; border: none; }
+
+/* HOME */
+.hero { padding: 80px 48px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.hero h1 { font-size: 40px; font-weight: 300; line-height: 1.18; max-width: 680px; margin-bottom: 24px; }
+.hero p { font-size: 15px; color: #6B6B6B; max-width: 520px; line-height: 1.75; margin-bottom: 36px; }
+.proof { display: flex; justify-content: center; padding: 60px 48px; }
+.proof-inner { display: flex; max-width: 900px; width: 100%; }
+.proof-item { flex: 1; padding: 0 36px; border-right: 1px solid #E5E2DC; }
+.proof-item:first-child { padding-left: 0; }
+.proof-item:last-child { border-right: none; padding-right: 0; }
+.proof-label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; color: #1C3557; text-transform: uppercase; margin-bottom: 12px; }
+.proof-item p { font-size: 13px; color: #6B6B6B; line-height: 1.7; }
+.news-teaser { padding: 60px 48px; background: #FFF; }
+.news-teaser-inner { max-width: 900px; margin: 0 auto; }
+.news-teaser-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; }
+.news-teaser-header h2 { font-size: 22px; font-weight: 300; }
+.news-teaser-header a { font-size: 12px; font-weight: 500; color: #1C3557; text-decoration: none; cursor: pointer; }
+.news-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.news-card { background: #F8F6F2; border-radius: 4px; padding: 22px; }
+.news-card-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #1C3557; }
+.news-card-date { font-size: 11px; color: #9B9B9B; margin: 4px 0 8px; }
+.news-card h3 { font-size: 13px; font-weight: 600; color: #1A1A1A; line-height: 1.4; margin-bottom: 8px; }
+.news-card p { font-size: 12px; color: #6B6B6B; line-height: 1.6; }
+.news-card a { font-size: 11px; font-weight: 500; color: #1C3557; text-decoration: none; display: inline-block; margin-top: 10px; cursor: pointer; }
+.phil-band { background: #1C3557; padding: 70px 48px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.phil-band h2 { font-size: 26px; font-weight: 300; color: #FFF; max-width: 600px; line-height: 1.45; margin-bottom: 18px; }
+.phil-band p { font-size: 14px; color: rgba(255,255,255,0.6); max-width: 520px; line-height: 1.8; margin-bottom: 28px; }
+.phil-band a { font-size: 12px; font-weight: 500; color: #FFF; text-decoration: underline; cursor: pointer; }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; max-width: 960px; margin: 0 auto; padding: 60px 48px; }
+.about-body p { font-size: 14px; color: #1A1A1A; line-height: 1.85; margin-bottom: 16px; }
+.phil-list { border-left: 3px solid #1C3557; padding-left: 24px; }
+.phil-list h3 { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #1C3557; margin-bottom: 22px; }
+.phil-item { margin-bottom: 22px; }
+.phil-item strong { font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px; }
+.phil-item p { font-size: 12px; color: #6B6B6B; line-height: 1.65; }
+.team-sec { background: #FFF; padding: 60px 48px; }
+.team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 820px; }
+.team-card { background: #F8F6F2; padding: 28px; border-radius: 4px; }
+.team-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+.team-card .role { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #1C3557; margin-bottom: 12px; }
+.team-card p { font-size: 12px; color: #6B6B6B; line-height: 1.7; }
+
+/* STRATEGY */
+.track { max-width: 780px; margin: 0 auto 32px; padding: 36px 44px; background: #FFF; border-radius: 4px; }
+.track.t1 { border-left: 4px solid #1C3557; }
+.track.t2 { border-left: 4px solid #C9A84C; }
+.track-num { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; color: #9B9B9B; text-transform: uppercase; margin-bottom: 10px; }
+.track h2 { font-size: 22px; font-weight: 300; margin-bottom: 12px; }
+.track > p { font-size: 13px; color: #6B6B6B; line-height: 1.75; margin-bottom: 18px; }
+.track h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #1A1A1A; margin-bottom: 10px; }
+.track ul { list-style: none; padding: 0; }
+.track ul li { font-size: 13px; color: #6B6B6B; line-height: 1.65; padding: 6px 0 6px 14px; border-bottom: 1px solid #F0EDE8; position: relative; }
+.track ul li::before { content: '—'; position: absolute; left: 0; color: #C9A84C; }
+.track ul li:last-child { border-bottom: none; }
+.principle { background: #1C3557; padding: 56px 48px; text-align: center; }
+.principle p { font-size: 20px; font-weight: 300; color: #FFF; max-width: 580px; margin: 0 auto; line-height: 1.6; font-style: italic; }
+
+/* PORTFOLIO */
+.port-sec { max-width: 780px; margin: 0 auto; padding: 48px 48px 0; }
+.holding { display: flex; align-items: flex-start; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid #E5E2DC; gap: 32px; }
+.holding:last-child { border-bottom: none; }
+.holding h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.holding p { font-size: 12px; color: #6B6B6B; line-height: 1.65; max-width: 520px; }
+.tag { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+.tag.active { background: #EBF0F6; color: #1C3557; }
+.tag.growth { background: #FBF6EC; color: #A07820; }
+.tag.exited { background: #F0F0F0; color: #6B6B6B; }
+.port-disc { max-width: 780px; margin: 0 auto; padding: 24px 48px 60px; font-size: 11px; color: #9B9B9B; line-height: 1.7; }
+
+/* NEWS */
+.news-list { max-width: 780px; margin: 0 auto; padding: 48px 48px 20px; }
+.news-entry { padding: 28px 0; border-bottom: 1px solid #E5E2DC; }
+.news-entry:last-child { border-bottom: none; }
+.news-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.news-co { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #1C3557; }
+.news-dot { width: 3px; height: 3px; border-radius: 50%; background: #C9A84C; }
+.news-date { font-size: 11px; color: #9B9B9B; }
+.news-entry h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; line-height: 1.4; }
+.news-entry p { font-size: 13px; color: #6B6B6B; line-height: 1.7; }
+.news-entry a { font-size: 11px; font-weight: 500; color: #1C3557; text-decoration: none; display: inline-block; margin-top: 10px; cursor: pointer; }
+.media-sec { max-width: 780px; margin: 0 auto; padding: 48px 48px 60px; }
+.media-entry { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 18px 0; border-bottom: 1px solid #E5E2DC; }
+.media-entry:last-child { border-bottom: none; }
+.media-info h3 { font-size: 14px; font-weight: 600; color: #1A1A1A; line-height: 1.35; margin-bottom: 3px; }
+.media-source { font-size: 11px; color: #9B9B9B; }
+.media-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.media-link { font-size: 11px; font-weight: 500; color: #1C3557; text-decoration: none; white-space: nowrap; }
+
+/* CONTACT */
+.contact-wrap { max-width: 520px; margin: 0 auto; padding: 48px 48px 60px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #6B6B6B; margin-bottom: 6px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 11px 14px; font-family: 'Inter', sans-serif; font-size: 13px; color: #1A1A1A; background: #FFF; border: 1px solid #E5E2DC; border-radius: 3px; outline: none; }
+.form-group textarea { height: 110px; resize: vertical; }
+.form-group select { appearance: none; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.contact-note { margin-top: 20px; font-size: 11px; color: #9B9B9B; line-height: 1.7; text-align: center; }
+
+/* PAGE HEADER */
+.page-header { padding: 60px 48px 0; text-align: center; }
+.page-header h1 { font-size: 36px; font-weight: 300; max-width: 640px; margin: 0 auto 20px; line-height: 1.2; }
+.page-header p { font-size: 15px; color: #6B6B6B; max-width: 540px; margin: 0 auto; line-height: 1.75; }
+
+/* SITE FOOTER */
+.site-footer { border-top: 1px solid #E5E2DC; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; background: #F8F6F2; }
+.site-footer span { font-size: 11px; color: #6B6B6B; }
+.site-footer .disc { font-size: 10px; color: #9B9B9B; text-align: right; max-width: 420px; }
+
+/* SPEC TABLE */
+.spec-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+.spec-table th { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #9B9B9B; text-align: left; padding: 10px 16px; border-bottom: 2px solid #E5E2DC; background: #FAFAF8; }
+.spec-table td { font-size: 13px; padding: 12px 16px; border-bottom: 1px solid #F0EDE8; vertical-align: top; color: #1A1A1A; }
+.spec-table td:first-child { font-weight: 600; color: #6B6B6B; width: 180px; }
+.spec-table code { font-family: monospace; font-size: 12px; background: #F0EDE8; padding: 2px 6px; border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<!-- DOC NAV -->
+<nav class="doc-nav">
+  <div class="doc-nav-logo">NAZARIAN CAPITAL — PROJECT HANDOFF</div>
+  <div class="doc-nav-links">
+    <a onclick="scrollTo('design')">Design</a>
+    <a onclick="scrollTo('copy')">Copy</a>
+    <a onclick="scrollTo('media')">Media</a>
+    <a onclick="scrollTo('mockup')">Mockup</a>
+  </div>
+</nav>
+
+<!-- ============ DESIGN SPECS ============ -->
+<div id="design" class="section">
+  <div class="section-label">Section 01</div>
+  <h2>Design System</h2>
+  <p class="section-desc">All design tokens, typography, and specifications needed to build the site in Framer or any other tool.</p>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('colors')">Colors</div>
+    <div class="tab" onclick="switchTab('typography')">Typography</div>
+    <div class="tab" onclick="switchTab('specs')">Specs</div>
+    <div class="tab" onclick="switchTab('logo')">Logo</div>
+  </div>
+
+  <div id="tab-colors" class="tab-content active">
+    <div class="tokens-grid">
+      <div class="token-group">
+        <h3>Core Colors</h3>
+        <div class="color-row"><div class="color-swatch" style="background:#F8F6F2;"></div><div class="color-info"><span class="color-name">Background</span><span class="color-hex">#F8F6F2</span></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#FFFFFF; border:1px solid #E5E2DC;"></div><div class="color-info"><span class="color-name">White / Surface</span><span class="color-hex">#FFFFFF</span></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#1C3557;"></div><div class="color-info"><span class="color-name">Navy (Primary Accent)</span><span class="color-hex">#1C3557</span></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#C9A84C;"></div><div class="color-info"><span class="color-name">Gold (Secondary Accent)</span><span class="color-hex">#C9A84C</span></div></div>
+      </div>
+      <div class="token-group">
+        <h3>Text & UI Colors</h3>
+        <div class="color-row"><div class="color-swatch" style="background:#1A1A1A;"></div><div class="color-info"><span class="color-name">Text Primary</span><span class="color-hex">#1A1A1A</span></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#6B6B6B;"></div><div class="color-info"><span class="color-name">Text Secondary</span><span class="color-hex">#6B6B6B</span></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#9B9B9B;"></div><div class="color-info"><span class="color-name">Text Muted</span><span class="color-hex">#9B9B9B</span></div></div>
+        <div class="color-row"><div class="color-swatch" style="background:#E5E2DC;"></div><div class="color-info"><span class="color-name">Border / Divider</span><span class="color-hex">#E5E2DC</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-typography" class="tab-content">
+    <div class="font-row">
+      <div class="font-label">Eyebrow</div>
+      <div class="font-preview" style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#9B9B9B;">PRIVATE FAMILY OFFICE</div>
+      <div class="font-spec">Inter · Semi Bold (600) · 10px · 0.22em spacing · Uppercase · #9B9B9B</div>
+    </div>
+    <div class="font-row">
+      <div class="font-label">Hero Headline</div>
+      <div class="font-preview" style="font-size:36px;font-weight:300;line-height:1.18;color:#1A1A1A;">Early-Stage Operator Partnerships.</div>
+      <div class="font-spec">Inter · Light (300) · 50px desktop / 36px mobile · Line height 1.18 · #1A1A1A</div>
+    </div>
+    <div class="font-row">
+      <div class="font-label">Page Headline</div>
+      <div class="font-preview" style="font-size:28px;font-weight:300;color:#1A1A1A;">An Operator's Perspective on Capital</div>
+      <div class="font-spec">Inter · Light (300) · 42px · Line height 1.2 · #1A1A1A</div>
+    </div>
+    <div class="font-row">
+      <div class="font-label">Body Text</div>
+      <div class="font-preview" style="font-size:15px;font-weight:400;color:#6B6B6B;line-height:1.8;">Nazarian Capital was founded by Benjamin Nazarian on a straightforward observation: most companies that struggle to scale don't have a capital problem.</div>
+      <div class="font-spec">Inter · Regular (400) · 15–16px · Line height 1.75–1.8 · #6B6B6B</div>
+    </div>
+    <div class="font-row">
+      <div class="font-label">Nav Links</div>
+      <div class="font-preview" style="font-size:13px;font-weight:400;color:#6B6B6B;letter-spacing:0.04em;">About &nbsp;&nbsp; Strategy &nbsp;&nbsp; Portfolio &nbsp;&nbsp; News &nbsp;&nbsp; Contact</div>
+      <div class="font-spec">Inter · Regular (400) · 13px · 0.04em spacing · #6B6B6B</div>
+    </div>
+    <div class="font-row">
+      <div class="font-label">Logo Wordmark</div>
+      <div class="font-preview" style="font-size:11px;font-weight:600;letter-spacing:0.18em;color:#1A1A1A;">NAZARIAN <span style="font-weight:300;letter-spacing:0.3em;color:#6B6B6B;">CAPITAL</span></div>
+      <div class="font-spec">Inter · Semi Bold (600) / Light (300) · 11px · #1A1A1A / #6B6B6B</div>
+    </div>
+    <div class="font-row">
+      <div class="font-label">NC Logo Mark</div>
+      <div class="font-preview" style="font-size:20px;font-weight:700;color:#1C3557;font-family:Georgia,serif;">NC</div>
+      <div class="font-spec">Magnolia Bold (custom font) · 28px inside diamond mark · White on Navy</div>
+    </div>
+  </div>
+
+  <div id="tab-specs" class="tab-content">
+    <table class="spec-table">
+      <tr><th>Property</th><th>Value</th><th>Notes</th></tr>
+      <tr><td>Canvas Width</td><td><code>1440px</code></td><td>Desktop max width</td></tr>
+      <tr><td>Content Max Width</td><td><code>1100px</code></td><td>Centered with auto margins</td></tr>
+      <tr><td>Section Padding</td><td><code>80–100px top/bottom</code></td><td>64px on smaller sections</td></tr>
+      <tr><td>Horizontal Padding</td><td><code>64px</code></td><td>Left and right on all sections</td></tr>
+      <tr><td>Navbar Height</td><td><code>72px</code></td><td>Sticky, top: 0</td></tr>
+      <tr><td>Navbar Background</td><td><code>#F8F6F2</code></td><td>With 1px bottom border #E5E2DC</td></tr>
+      <tr><td>Footer Height</td><td><code>72px</code></td><td>With 1px top border #E5E2DC</td></tr>
+      <tr><td>Border Radius</td><td><code>3–4px</code></td><td>Buttons: 3px · Cards: 4px</td></tr>
+      <tr><td>Grid Gap</td><td><code>24–28px</code></td><td>Cards and content grids</td></tr>
+      <tr><td>Button Padding</td><td><code>15px 36px</code></td><td>Primary CTA button</td></tr>
+      <tr><td>Logo Mark Size</td><td><code>36x36px</code></td><td>In navbar · 80x80px standalone</td></tr>
+      <tr><td>Platform</td><td>Framer</td><td>Desktop app v2026.10.3 · Mac</td></tr>
+      <tr><td>Hosting</td><td>GoDaddy</td><td>Custom domain via DNS</td></tr>
+      <tr><td>Contact Email</td><td>info@nazariancapital.com</td><td>All form submissions route here</td></tr>
+    </table>
+
+    <table class="spec-table">
+      <tr><th>Page</th><th>Sections</th></tr>
+      <tr><td>Home</td><td>Hero · Proof Points · News Teaser · Philosophy Band · Footer</td></tr>
+      <tr><td>About</td><td>Page Header · Firm Story + Philosophy · Team Cards · Footer</td></tr>
+      <tr><td>Strategy</td><td>Page Header · Track 01 · Track 02 · Principle Band · Footer</td></tr>
+      <tr><td>Portfolio</td><td>Page Header · Financial Firms · Health & Wellness · Growth Capital · Footer</td></tr>
+      <tr><td>News</td><td>Page Header · In the News · Media Section · Footer</td></tr>
+      <tr><td>Contact</td><td>Page Header · Contact Form · Footer</td></tr>
+    </table>
+  </div>
+
+  <div id="tab-logo" class="tab-content">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:40px;">
+      <div style="background:#F8F6F2;border:1px solid #E5E2DC;border-radius:4px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><polygon points="40,3 77,40 40,77 3,40" fill="#1C3557"/><text x="40" y="53" font-family="Georgia,serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">NC</text></svg>
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9B9B9B;">Mark Only · Light BG</span>
+      </div>
+      <div style="background:#1C3557;border-radius:4px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><polygon points="40,3 77,40 40,77 3,40" fill="rgba(255,255,255,0.15)"/><text x="40" y="53" font-family="Georgia,serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">NC</text></svg>
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Mark Only · Navy BG</span>
+      </div>
+      <div style="background:#F8F6F2;border:1px solid #E5E2DC;border-radius:4px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <svg width="48" height="48" viewBox="0 0 80 80" fill="none"><polygon points="40,3 77,40 40,77 3,40" fill="#1C3557"/><text x="40" y="53" font-family="Georgia,serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">NC</text></svg>
+          <div style="width:1px;height:28px;background:#E5E2DC;"></div>
+          <div><div style="font-size:10px;font-weight:600;letter-spacing:0.18em;color:#1A1A1A;">NAZARIAN</div><div style="font-size:10px;font-weight:300;letter-spacing:0.3em;color:#6B6B6B;">CAPITAL</div></div>
+        </div>
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#9B9B9B;">Full Lockup · Light BG</span>
+      </div>
+    </div>
+    <table class="spec-table">
+      <tr><th>Element</th><th>Specification</th></tr>
+      <tr><td>Diamond Shape</td><td>Square rotated 45° · Fill: #1C3557 · Size: 36x36px (navbar) / 80x80px (standalone)</td></tr>
+      <tr><td>NC Letters</td><td>Magnolia Bold · 28px (80px mark) / 16px (36px mark) · White · Centered</td></tr>
+      <tr><td>Divider</td><td>1px vertical line · #E5E2DC · Height: 28px</td></tr>
+      <tr><td>NAZARIAN</td><td>Inter Semi Bold · 11px · #1A1A1A · Letter spacing 0.18em</td></tr>
+      <tr><td>CAPITAL</td><td>Inter Light · 11px · #6B6B6B · Letter spacing 0.30em</td></tr>
+      <tr><td>Logo group gap</td><td>12px between mark, divider, and wordmark</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============ COPY ============ -->
+<div id="copy" class="section">
+  <div class="section-label">Section 02</div>
+  <h2>Website Copy</h2>
+  <p class="section-desc">Final approved copy for all six pages. All text is ready to drop into Framer.</p>
+
+  <!-- HOME -->
+  <div class="copy-page">
+    <div class="copy-page-title">HOME PAGE</div>
+    <div class="copy-block"><div class="copy-block-label">Eyebrow</div><p>Private Family Office</p></div>
+    <div class="copy-block"><div class="copy-block-label">Hero Headline</div><p>Early-Stage Operator Partnerships.<br>Late-Stage Growth Bets.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Hero Sub-headline</div><p>Nazarian Capital is a private family office that invests at two ends of the growth curve — partnering directly with founders who need operational expertise to scale, and deploying capital into established market leaders on the path to enduring dominance.</p></div>
+    <div class="copy-block"><div class="copy-block-label">CTA Button</div><p>Explore Our Strategy</p></div>
+    <div class="copy-block"><div class="copy-block-label">Proof Point 1</div><h3>Operator-Led</h3><p>Capital backed by decades of hands-on experience building and scaling companies — not just funding them.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Proof Point 2</div><h3>Two-Track Portfolio</h3><p>Active partnerships with high-growth ventures. Selective positions in category-defining late-stage companies.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Proof Point 3</div><h3>Built-In Resources</h3><p>Portfolio companies benefit from a network and operational infrastructure that most investors simply don't have.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Philosophy Teaser</div><h3>Most investors write checks. Nazarian Capital rolls up its sleeves.</h3><p>The hardest part of building a company isn't the idea — it's navigating the growth curve for the first time. That's where experience becomes the most valuable form of capital.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Philosophy CTA</div><p>Learn Our Approach →</p></div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="copy-page">
+    <div class="copy-page-title">ABOUT PAGE</div>
+    <div class="copy-block"><div class="copy-block-label">Page Headline</div><p>An Operator's Perspective on Capital</p></div>
+    <div class="copy-block"><div class="copy-block-label">Firm Story</div><p>Nazarian Capital was founded by Benjamin Nazarian on a straightforward observation: most companies that struggle to scale don't have a capital problem — they have an operational one. They've never designed systems that survive five times the headcount. They've never navigated the complexity of expanding a DTC business into retail across domestic and international markets. That's the gap Nazarian Capital was built to fill.</p><p style="margin-top:12px;">The firm draws on deep operational experience built across real estate, technology, and private enterprise — including founding and scaling Omninet Capital, a multifamily real estate platform, and serving as an active strategic partner to portfolio companies through roles at Parkview Financial and Constellation Capital. These aren't advisory relationships. They are working partnerships where the firm sits alongside the CEO, helping them build the infrastructure, teams, and systems that sustain long-term growth.</p><p style="margin-top:12px;">Nazarian Capital also brings deep expertise and an extensive network in the health and wellness industry, with a dedicated focus on identifying and investing in the next generation of consumer health and wellness companies.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Philosophy Principles</div><h4>Operational experience is the scarcest resource.</h4><p>Most founders are building their first company. The challenges they face — scaling teams, designing processes, managing culture under pressure — are ones that only experience can navigate well.</p><h4>Patient capital outperforms impatient capital.</h4><p>Nazarian Capital takes long-term positions. The goal is never a quick exit. It's building something that lasts.</p><h4>Resources matter as much as money.</h4><p>Portfolio companies gain access to an operational network and a founder who has been through the growth curve — and come out the other side.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Benjamin Nazarian — Bio</div><p>Benjamin Nazarian is a seasoned operator and investor with decades of experience founding, scaling, and advising companies across real estate, technology, and consumer markets. He is the founder of Omninet Capital, a multifamily real estate platform, and serves as an active strategic partner to growth-stage companies through his roles at Parkview Financial and Constellation Capital. Benjamin brings hands-on operational expertise in business planning, DTC-to-retail expansion, marketing, and organizational scaling — the exact challenges most founders face for the first time. Nazarian Capital is the expression of that experience, deployed as capital.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Sienna Nazarian — Bio</div><p>Sienna focuses on identifying early-stage consumer product companies in the health and wellness space. With a background in product design engineering, she brings a founder-level lens to evaluating how products are built, differentiated, and positioned for scale. Her coverage expands Nazarian Capital's reach into one of the fastest-growing segments of the consumer market.</p></div>
+  </div>
+
+  <!-- STRATEGY -->
+  <div class="copy-page">
+    <div class="copy-page-title">STRATEGY PAGE</div>
+    <div class="copy-block"><div class="copy-block-label">Page Headline</div><p>Two Ways to Invest. One Underlying Principle.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Intro</div><p>Nazarian Capital takes a deliberate, two-track approach to investing — each driven by a different kind of conviction, and each designed to generate returns over a long time horizon.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Track 01 — Operator Partnerships</div><h3>For Companies That Need More Than a Check</h3><p>These are investments in venture and growth-stage companies where capital alone isn't enough. Nazarian Capital takes an active role — working directly with the CEO to build the operational foundations that early-stage companies typically lack.</p><h4>What this looks like in practice:</h4><ul><li>Working with the founder to develop the business plan and establish a clear path to scale</li><li>Developing cost-effective marketing plans with a disciplined focus on ROI</li><li>Guiding expansion from DTC into retail, across both domestic and international markets</li><li>Implementing operating systems, reporting, and accountability frameworks</li><li>Serving as a sounding board on strategy, culture, and the decisions that don't have obvious answers</li></ul></div>
+    <div class="copy-block"><div class="copy-block-label">Track 02 — Growth Capital</div><h3>For Companies That Have Already Proven It</h3><p>Selective, high-conviction positions in established companies with demonstrated market leadership and meaningful paths to continued expansion. This is passive, long-term capital placed with conviction.</p><h4>What we look for:</h4><ul><li>Category leadership in a large or expanding market, with emphasis on AI, defense tech, and fintech</li><li>A capital structure that respects existing investors</li><li>Management teams with a track record of execution</li><li>A long runway for continued value creation</li></ul></div>
+    <div class="copy-block"><div class="copy-block-label">Underlying Principle</div><p>"Is this a business worth owning for a decade? Nazarian Capital does not chase trends. It backs passionate founders."</p></div>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <div class="copy-page">
+    <div class="copy-page-title">PORTFOLIO PAGE</div>
+    <div class="copy-block"><div class="copy-block-label">Page Headline</div><p>Selected Investments</p></div>
+    <div class="copy-block"><div class="copy-block-label">Intro</div><p>A concentrated portfolio across two tracks — active operator partnerships with high-growth companies, and long-term capital positions in established market leaders.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Financial Firms</div><h4>Parkview Financial</h4><p>Active strategic partner. Working directly with leadership to build operational infrastructure and scale the business through its next phase of growth. <span style="background:#EBF0F6;color:#1C3557;font-size:10px;font-weight:600;padding:2px 8px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;">Active Partner</span></p><h4 style="margin-top:14px;">Constellation Capital</h4><p>Active strategic partner. Embedded alongside the CEO to develop the organizational systems, talent strategy, and processes required for sustained expansion. <span style="background:#EBF0F6;color:#1C3557;font-size:10px;font-weight:600;padding:2px 8px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;">Active Partner</span></p></div>
+    <div class="copy-block"><div class="copy-block-label">Health & Wellness</div><h4>Therabody</h4><p>Pioneer of percussive therapy and recovery technology, redefining how athletes and consumers approach physical wellness. <span style="background:#FBF6EC;color:#A07820;font-size:10px;font-weight:600;padding:2px 8px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;">Growth Capital</span></p><h4 style="margin-top:14px;">Poppi (Exited)</h4><p>A next-generation prebiotic soda brand that disrupted the legacy beverage category. Successfully exited following acquisition by PepsiCo in 2025. <span style="background:#F0F0F0;color:#6B6B6B;font-size:10px;font-weight:600;padding:2px 8px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;">Exited</span></p><h4 style="margin-top:14px;">Magic Spoon</h4><p>Reinventing the breakfast category with high-protein, low-carb cereals built for adult consumers who refuse to compromise on nutrition or taste. <span style="background:#FBF6EC;color:#A07820;font-size:10px;font-weight:600;padding:2px 8px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;">Growth Capital</span></p><h4 style="margin-top:14px;">Lensabl</h4><p>The modern vision care platform making prescription eyewear and lens replacement accessible, affordable, and fully online. <span style="background:#FBF6EC;color:#A07820;font-size:10px;font-weight:600;padding:2px 8px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;">Growth Capital</span></p></div>
+    <div class="copy-block"><div class="copy-block-label">Growth Capital Positions</div><h4>SpaceX</h4><p>The world's leading private aerospace company, redefining access to space and building the infrastructure for a multi-planetary future. <span style="background:#FBF6EC;color:#A07820;font-size:10px;font-weight:600;padding:2px 8px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;">Growth Capital</span></p><h4 style="margin-top:14px;">Diamond Foundry</h4><p>A deep-tech company accelerating the AI, electric vehicle, and wireless communications industries through single-crystal diamond wafers — a breakthrough material solving the thermal limitations constraining next-generation chips. <span style="background:#FBF6EC;color:#A07820;font-size:10px;font-weight:600;padding:2px 8px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;">Growth Capital</span></p></div>
+    <div class="copy-block"><div class="copy-block-label">Disclaimer</div><p>Portfolio reflects select current and prior investments. Additional holdings are not disclosed. Nothing on this page constitutes an offer to sell or solicit securities.</p></div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="copy-page">
+    <div class="copy-page-title">CONTACT PAGE</div>
+    <div class="copy-block"><div class="copy-block-label">Page Headline</div><p>Get In Touch</p></div>
+    <div class="copy-block"><div class="copy-block-label">Sub-headline</div><p>Nazarian Capital considers a limited number of new opportunities each year. If you are a founder seeking an operational partner, or representing a late-stage growth round, reach out below.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Form Fields</div><ul><li>Name</li><li>Email</li><li>Organization</li><li>How can we help? (Operator Partnership Inquiry / Growth Capital / General)</li><li>Message</li></ul></div>
+    <div class="copy-block"><div class="copy-block-label">Legal Note</div><p>Nazarian Capital is a private investment vehicle. It does not manage third-party capital and is not registered as an investment adviser. All inquiries are reviewed personally and routed to info@nazariancapital.com.</p></div>
+    <div class="copy-block"><div class="copy-block-label">Footer Disclaimer (all pages)</div><p>For informational purposes only. Not an offer to sell or solicit securities.</p></div>
+  </div>
+</div>
+
+<!-- ============ MEDIA ============ -->
+<div id="media" class="section">
+  <div class="section-label">Section 03</div>
+  <h2>Media & News Links</h2>
+  <p class="section-desc">All finalized links for the News page — ordered by profile prominence. Ready to drop into Framer CMS.</p>
+
+  <table class="media-table">
+    <tr><th>Title</th><th>Source</th><th>Type</th><th>Link</th></tr>
+    <tr><td>CNBC: Benjamin Nazarian and Maria Sharapova on Investing in Wellness Tech Company Therabody<div class="source-name">CNBC · YouTube</div></td><td>CNBC</td><td><span class="tag-sm video">Video</span></td><td><a href="https://youtu.be/CeJ0yur6sfQ" target="_blank">Watch →</a></td></tr>
+    <tr><td>Elevating Wellness & Recovery with Therabody<div class="source-name">Bloomberg Podcast</div></td><td>Bloomberg</td><td><span class="tag-sm podcast">Podcast</span></td><td><a href="https://www.bloomberg.com/news/audio/2021-06-23/elevating-wellness-recovery-with-therabody-podcast" target="_blank">Listen →</a></td></tr>
+    <tr><td>Montgomery Summit: The Future of Disruption with Benjamin Nazarian<div class="source-name">Montgomery Summit · YouTube</div></td><td>Montgomery Summit</td><td><span class="tag-sm video">Video</span></td><td><a href="https://youtu.be/BbtR-6_LDvU" target="_blank">Watch →</a></td></tr>
+    <tr><td>Wellness Technology Revolution with Therabody<div class="source-name">TD Securities — Retail Visionaries Series</div></td><td>TD Securities</td><td><span class="tag-sm podcast">Podcast</span></td><td><a href="https://www.tdsecurities.com/ca/en/tdc-retail-visionaries-wellness-technology-revolution" target="_blank">Listen →</a></td></tr>
+    <tr><td>#104: Benjamin Nazarian, CEO of Therabody<div class="source-name">Fitt Insider Podcast</div></td><td>Fitt Insider</td><td><span class="tag-sm podcast">Podcast</span></td><td><a href="https://insider.fitt.co/104-benjamin-nazarian-ceo-of-therabody/" target="_blank">Listen →</a></td></tr>
+    <tr><td>Episode #231: Benjamin Nazarian & Dr. Jason Wersland, Therabody<div class="source-name">HALO Talks</div></td><td>HALO Talks</td><td><span class="tag-sm podcast">Podcast</span></td><td><a href="https://www.halotalks.com/benjamin-nazarian-dr-jason-wersland-therabody/" target="_blank">Listen →</a></td></tr>
+    <tr><td>Establishing Your Brand's Credibility with Benjamin Nazarian<div class="source-name">The Playbook · David Meltzer · YouTube</div></td><td>David Meltzer</td><td><span class="tag-sm video">Video</span></td><td><a href="https://youtu.be/XcrvWGDYDrQ" target="_blank">Watch →</a></td></tr>
+    <tr><td>Ben Nazarian, CEO of Therabody, on the Next Evolution of Health & Wellness<div class="source-name">How Success Happens · Audioboom</div></td><td>Audioboom</td><td><span class="tag-sm podcast">Podcast</span></td><td><a href="https://audioboom.com/posts/7946552-ben-nazarian-ceo-of-therabody-on-the-next-evolution-of-health-wellness" target="_blank">Listen →</a></td></tr>
+    <tr><td>Oxford Road Presents: Media's New Deal featuring Benjamin Nazarian<div class="source-name">Oxford Road · YouTube</div></td><td>Oxford Road</td><td><span class="tag-sm video">Video</span></td><td><a href="https://youtu.be/IMju0KqA8Xk" target="_blank">Watch →</a></td></tr>
+    <tr><td>Media's New Deal, Episode 10<div class="source-name">Oxford Road</div></td><td>Oxford Road</td><td><span class="tag-sm podcast">Podcast</span></td><td><a href="https://oxfordroad.com/thought-leadership/medias-new-deal-episode10/" target="_blank">Listen →</a></td></tr>
+    <tr><td>Episode 10: Ben Nazarian, CEO of Therabody<div class="source-name">Global Player</div></td><td>Global Player</td><td><span class="tag-sm podcast">Podcast</span></td><td><a href="https://www.globalplayer.com/podcasts/episodes/7DrpSdM/" target="_blank">Listen →</a></td></tr>
+    <tr><td>How Success Happened for Benjamin Nazarian, CEO of Therabody<div class="source-name">San Antonio Express-News</div></td><td>San Antonio Express-News</td><td><span class="tag-sm press">Press</span></td><td><a href="https://www.mysanantonio.com/business/article/How-Success-Happened-for-Benjamin-Nazarian-CEO-16533325.php" target="_blank">Read →</a></td></tr>
+    <tr><td>One Tool to Treat It All — A Deep Dive into Therabody's TheraFace Pro<div class="source-name">Spotify · featuring Benjamin Nazarian</div></td><td>Spotify</td><td><span class="tag-sm podcast">Podcast</span></td><td><a href="https://open.spotify.com/episode/7f3yEDgli7K2NT9nfXlx84" target="_blank">Listen →</a></td></tr>
+  </table>
+</div>
+
+<!-- ============ MOCKUP ============ -->
+<div id="mockup" class="section">
+  <div class="section-label">Section 04</div>
+  <h2>Interactive Site Mockup</h2>
+  <p class="section-desc">Click through all six pages to preview the final design. Use the navbar to navigate between pages.</p>
+</div>
+
+<div style="background:#F0EDE8;padding:0 48px 80px;max-width:1100px;margin:0 auto;">
+  <div class="mockup-wrap">
+    <div class="mockup-bar">
+      <div class="mockup-dot" style="background:#FF5F57;"></div>
+      <div class="mockup-dot" style="background:#FEBC2E;"></div>
+      <div class="mockup-dot" style="background:#28C840;"></div>
+      <div class="mockup-url">nazariancapital.com</div>
+    </div>
+
+    <!-- SITE NAV -->
+    <div class="site-nav">
+      <div class="site-logo-wrap" onclick="showSitePage('home')">
+        <svg width="32" height="32" viewBox="0 0 80 80" fill="none"><polygon points="40,3 77,40 40,77 3,40" fill="#1C3557"/><text x="40" y="53" font-family="Georgia,serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">NC</text></svg>
+        <div class="site-logo-divider"></div>
+        <div class="site-logo-text"><span class="site-logo-name">NAZARIAN</span><span class="site-logo-sub">CAPITAL</span></div>
+      </div>
+      <div class="site-nav-links">
+        <a onclick="showSitePage('about')" id="snav-about">About</a>
+        <a onclick="showSitePage('strategy')" id="snav-strategy">Strategy</a>
+        <a onclick="showSitePage('portfolio')" id="snav-portfolio">Portfolio</a>
+        <a onclick="showSitePage('news')" id="snav-news">News</a>
+        <a onclick="showSitePage('contact')" id="snav-contact">Contact</a>
+      </div>
+    </div>
+
+    <!-- HOME -->
+    <div class="site-page active" id="sp-home">
+      <div class="hero">
+        <div class="eyebrow">Private Family Office</div>
+        <h1>Early-Stage Operator Partnerships.<br>Late-Stage Growth Bets.</h1>
+        <p>Nazarian Capital is a private family office that invests at two ends of the growth curve — partnering directly with founders who need operational expertise to scale, and deploying capital into established market leaders on the path to enduring dominance.</p>
+        <button class="site-btn" onclick="showSitePage('strategy')">Explore Our Strategy</button>
+      </div>
+      <div class="site-divider"></div>
+      <div class="proof"><div class="proof-inner">
+        <div class="proof-item"><div class="proof-label">Operator-Led</div><p>Capital backed by decades of hands-on experience building and scaling companies — not just funding them.</p></div>
+        <div class="proof-item"><div class="proof-label">Two-Track Portfolio</div><p>Active partnerships with high-growth ventures. Selective positions in category-defining late-stage companies.</p></div>
+        <div class="proof-item"><div class="proof-label">Built-In Resources</div><p>Portfolio companies benefit from a network and operational infrastructure that most investors simply don't have.</p></div>
+      </div></div>
+      <div class="site-divider"></div>
+      <div class="news-teaser"><div class="news-teaser-inner">
+        <div class="news-teaser-header"><div><div class="eyebrow navy" style="margin-bottom:8px;">Portfolio News</div><h2>Latest from the Portfolio</h2></div><a onclick="showSitePage('news')">View All Updates →</a></div>
+        <div class="news-cards">
+          <div class="news-card"><div class="news-card-tag">SpaceX</div><div class="news-card-date">March 2026</div><h3>SpaceX Completes Starship's Seventh Test Flight</h3><p>Full booster catch and reusability milestones bring the program closer to commercial operations.</p><a onclick="showSitePage('news')">Read More →</a></div>
+          <div class="news-card"><div class="news-card-tag">Diamond Foundry</div><div class="news-card-date">February 2026</div><h3>Diamond Foundry Expands Wafer Production for AI</h3><p>Scale-up targets growing demand in AI compute chips and power electronics.</p><a onclick="showSitePage('news')">Read More →</a></div>
+          <div class="news-card"><div class="news-card-tag">Magic Spoon</div><div class="news-card-date">December 2025</div><h3>Magic Spoon Expands Retail Distribution Nationwide</h3><p>Major expansion into national grocery chains marks brand's evolution from DTC to mainstream.</p><a onclick="showSitePage('news')">Read More →</a></div>
+        </div>
+      </div></div>
+      <div class="site-divider"></div>
+      <div class="phil-band"><h2>Most investors write checks.<br>Nazarian Capital rolls up its sleeves.</h2><p>The hardest part of building a company isn't the idea — it's navigating the growth curve for the first time. That's where experience becomes the most valuable form of capital.</p><a onclick="showSitePage('strategy')">Learn Our Approach →</a></div>
+      <div class="site-footer"><span>© 2026 Nazarian Capital. All rights reserved.</span><span class="disc">For informational purposes only. Not an offer to sell or solicit securities.</span></div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="site-page" id="sp-about">
+      <div class="page-header"><div class="eyebrow">About</div><h1>An Operator's Perspective on Capital</h1></div>
+      <div class="about-grid">
+        <div class="about-body">
+          <p>Nazarian Capital was founded by Benjamin Nazarian on a straightforward observation: most companies that struggle to scale don't have a capital problem — they have an operational one. They've never designed systems that survive five times the headcount. They've never navigated the complexity of expanding a DTC business into retail across domestic and international markets.</p>
+          <p>That's the gap Nazarian Capital was built to fill. The firm draws on deep operational experience built across real estate, technology, and private enterprise — including founding and scaling Omninet Capital, and serving as an active strategic partner through roles at Parkview Financial and Constellation Capital.</p>
+          <p>Nazarian Capital also brings deep expertise and an extensive network in the health and wellness industry, with a dedicated focus on identifying and investing in the next generation of consumer health and wellness companies.</p>
+        </div>
+        <div class="phil-list">
+          <h3>What We Believe</h3>
+          <div class="phil-item"><strong>Operational experience is the scarcest resource.</strong><p>Most founders are building their first company. The challenges they face can only be navigated well with experience.</p></div>
+          <div class="phil-item"><strong>Patient capital outperforms impatient capital.</strong><p>The goal is never a quick exit. It's building something that lasts.</p></div>
+          <div class="phil-item"><strong>Resources matter as much as money.</strong><p>Portfolio companies gain access to an operational network and a founder who has been through the growth curve.</p></div>
+        </div>
+      </div>
+      <div class="site-divider"></div>
+      <div class="team-sec">
+        <div class="eyebrow navy" style="margin-bottom:32px;">Team</div>
+        <div class="team-grid">
+          <div class="team-card"><h3>Benjamin Nazarian</h3><div class="role">Founder & Principal</div><p>Seasoned operator and investor with decades of experience founding, scaling, and advising companies across real estate, technology, and consumer markets. Founder of Omninet Capital and active strategic partner at Parkview Financial and Constellation Capital.</p></div>
+          <div class="team-card"><h3>Sienna Nazarian</h3><div class="role">Scout — Health & Wellness</div><p>Focuses on identifying early-stage consumer product companies in health and wellness. With a background in product design engineering, she brings a founder-level lens to evaluating how products are built, differentiated, and positioned for scale.</p></div>
+        </div>
+      </div>
+      <div class="site-footer"><span>© 2026 Nazarian Capital. All rights reserved.</span><span class="disc">For informational purposes only. Not an offer to sell or solicit securities.</span></div>
+    </div>
+
+    <!-- STRATEGY -->
+    <div class="site-page" id="sp-strategy">
+      <div class="page-header"><div class="eyebrow">Strategy</div><h1>Two Ways to Invest.<br>One Underlying Principle.</h1><p>A deliberate, two-track approach — each driven by a different kind of conviction, designed to generate returns over a long time horizon.</p></div>
+      <div style="padding:48px;">
+        <div class="track t1"><div class="track-num">Track 01</div><h2>For Companies That Need More Than a Check</h2><p>Investments in venture and growth-stage companies where Nazarian Capital takes an active role — working directly with the CEO to build the operational foundations that early-stage companies typically lack.</p><h4>What this looks like in practice</h4><ul><li>Working with the founder to develop the business plan and establish a clear path to scale</li><li>Developing cost-effective marketing plans with a disciplined focus on ROI</li><li>Guiding expansion from DTC into retail, across domestic and international markets</li><li>Implementing operating systems, reporting, and accountability frameworks</li><li>Serving as a sounding board on strategy, culture, and the decisions that don't have obvious answers</li></ul></div>
+        <div class="track t2"><div class="track-num">Track 02</div><h2>For Companies That Have Already Proven It</h2><p>Selective, high-conviction positions in established companies with demonstrated market leadership. Passive, long-term capital placed with conviction.</p><h4>What we look for</h4><ul><li>Category leadership with emphasis on AI, defense tech, and fintech</li><li>A capital structure that respects existing investors</li><li>Management teams with a track record of execution</li><li>A long runway for continued value creation</li></ul></div>
+      </div>
+      <div class="principle"><p>"Is this a business worth owning for a decade? Nazarian Capital does not chase trends. It backs passionate founders."</p></div>
+      <div class="site-footer"><span>© 2026 Nazarian Capital. All rights reserved.</span><span class="disc">For informational purposes only. Not an offer to sell or solicit securities.</span></div>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <div class="site-page" id="sp-portfolio">
+      <div class="page-header"><div class="eyebrow">Portfolio</div><h1>Selected Investments</h1><p>A concentrated portfolio across two tracks — active operator partnerships and long-term capital positions in established market leaders.</p></div>
+      <div class="port-sec"><div class="eyebrow navy" style="margin-bottom:16px;">Financial Firms</div>
+        <div class="holding"><div class="holding-info"><h3>Parkview Financial</h3><p>Active strategic partner. Working directly with leadership to build operational infrastructure and scale the business.</p></div><span class="tag active">Active Partner</span></div>
+        <div class="holding"><div class="holding-info"><h3>Constellation Capital</h3><p>Active strategic partner. Embedded alongside the CEO to develop organizational systems and talent strategy for sustained expansion.</p></div><span class="tag active">Active Partner</span></div>
+      </div>
+      <div class="site-divider" style="max-width:780px;margin:0 auto;"></div>
+      <div class="port-sec"><div class="eyebrow navy" style="margin-bottom:16px;">Health & Wellness</div>
+        <div class="holding"><div class="holding-info"><h3>Therabody</h3><p>Pioneer of percussive therapy and recovery technology, redefining how athletes and consumers approach physical wellness.</p></div><span class="tag growth">Growth Capital</span></div>
+        <div class="holding"><div class="holding-info"><h3>Poppi <span style="font-weight:400;color:#9B9B9B;font-size:11px;">(Exited)</span></h3><p>A prebiotic soda brand that disrupted the legacy beverage category. Exited via acquisition by PepsiCo in 2025.</p></div><span class="tag exited">Exited</span></div>
+        <div class="holding"><div class="holding-info"><h3>Magic Spoon</h3><p>Reinventing the breakfast category with high-protein, low-carb cereals for adult consumers.</p></div><span class="tag growth">Growth Capital</span></div>
+        <div class="holding"><div class="holding-info"><h3>Lensabl</h3><p>The modern vision care platform making prescription eyewear accessible, affordable, and fully online.</p></div><span class="tag growth">Growth Capital</span></div>
+      </div>
+      <div class="site-divider" style="max-width:780px;margin:0 auto;"></div>
+      <div class="port-sec"><div class="eyebrow navy" style="margin-bottom:16px;">Growth Capital Positions</div>
+        <div class="holding"><div class="holding-info"><h3>SpaceX</h3><p>The world's leading private aerospace company, redefining access to space and building infrastructure for a multi-planetary future.</p></div><span class="tag growth">Growth Capital</span></div>
+        <div class="holding"><div class="holding-info"><h3>Diamond Foundry</h3><p>A deep-tech company accelerating the AI, EV, and wireless communications industries through single-crystal diamond wafers.</p></div><span class="tag growth">Growth Capital</span></div>
+      </div>
+      <div class="port-disc">Portfolio reflects select current and prior investments. Additional holdings are not disclosed. Nothing on this page constitutes an offer to sell or solicit securities.</div>
+      <div class="site-footer"><span>© 2026 Nazarian Capital. All rights reserved.</span><span class="disc">For informational purposes only. Not an offer to sell or solicit securities.</span></div>
+    </div>
+
+    <!-- NEWS -->
+    <div class="site-page" id="sp-news">
+      <div class="page-header"><div class="eyebrow">News</div><h1>In the News</h1><p>A running record of milestones, announcements, and developments across the Nazarian Capital portfolio.</p></div>
+      <div class="news-list">
+        <div class="news-entry"><div class="news-meta"><span class="news-co">SpaceX</span><span class="news-dot"></span><span class="news-date">March 2026</span></div><h3>SpaceX Completes Starship's Seventh Test Flight</h3><p>Full booster catch and reusability milestones bring the program closer to commercial and deep-space operations.</p><a href="#">Read More →</a></div>
+        <div class="news-entry"><div class="news-meta"><span class="news-co">Diamond Foundry</span><span class="news-dot"></span><span class="news-date">February 2026</span></div><h3>Diamond Foundry Announces Expansion of Diamond Wafer Production for AI Applications</h3><p>Scale-up in single-crystal diamond wafer capacity targets the growing demand for thermal management solutions in AI compute chips.</p><a href="#">Read More →</a></div>
+        <div class="news-entry"><div class="news-meta"><span class="news-co">Therabody</span><span class="news-dot"></span><span class="news-date">January 2026</span></div><h3>Therabody Launches Next-Generation Recovery Platform</h3><p>Expanded beyond percussive therapy into a connected wellness ecosystem for both professional athletes and everyday consumers.</p><a href="#">Read More →</a></div>
+        <div class="news-entry"><div class="news-meta"><span class="news-co">Magic Spoon</span><span class="news-dot"></span><span class="news-date">December 2025</span></div><h3>Magic Spoon Expands Retail Distribution Nationwide</h3><p>Major expansion into leading national grocery chains marks the brand's evolution from DTC pioneer to mainstream consumer staple.</p><a href="#">Read More →</a></div>
+        <div class="news-entry"><div class="news-meta"><span class="news-co">Lensabl</span><span class="news-dot"></span><span class="news-date">November 2025</span></div><h3>Lensabl Partners with Major Vision Insurance Providers</h3><p>Partnerships with leading vision insurance networks make the platform accessible to millions of new customers nationwide.</p><a href="#">Read More →</a></div>
+      </div>
+      <div class="site-divider" style="max-width:780px;margin:0 auto;"></div>
+      <div class="media-sec">
+        <div class="eyebrow navy" style="margin-bottom:28px;">Media</div>
+        <div class="media-entry"><div class="media-info"><h3>CNBC: Benjamin Nazarian and Maria Sharapova on Investing in Wellness Tech Company Therabody</h3><div class="media-source">CNBC · YouTube</div></div><div class="media-right"><span class="tag-sm video">Video</span><a class="media-link" href="https://youtu.be/CeJ0yur6sfQ" target="_blank">Watch →</a></div></div>
+        <div class="media-entry"><div class="media-info"><h3>Elevating Wellness & Recovery with Therabody</h3><div class="media-source">Bloomberg Podcast</div></div><div class="media-right"><span class="tag-sm podcast">Podcast</span><a class="media-link" href="https://www.bloomberg.com/news/audio/2021-06-23/elevating-wellness-recovery-with-therabody-podcast" target="_blank">Listen →</a></div></div>
+        <div class="media-entry"><div class="media-info"><h3>Montgomery Summit: The Future of Disruption with Benjamin Nazarian</h3><div class="media-source">Montgomery Summit · YouTube</div></div><div class="media-right"><span class="tag-sm video">Video</span><a class="media-link" href="https://youtu.be/BbtR-6_LDvU" target="_blank">Watch →</a></div></div>
+        <div class="media-entry"><div class="media-info"><h3>Wellness Technology Revolution with Therabody</h3><div class="media-source">TD Securities — Retail Visionaries Series</div></div><div class="media-right"><span class="tag-sm podcast">Podcast</span><a class="media-link" href="https://www.tdsecurities.com/ca/en/tdc-retail-visionaries-wellness-technology-revolution" target="_blank">Listen →</a></div></div>
+        <div class="media-entry"><div class="media-info"><h3>#104: Benjamin Nazarian, CEO of Therabody</h3><div class="media-source">Fitt Insider Podcast</div></div><div class="media-right"><span class="tag-sm podcast">Podcast</span><a class="media-link" href="https://insider.fitt.co/104-benjamin-nazarian-ceo-of-therabody/" target="_blank">Listen →</a></div></div>
+        <div class="media-entry"><div class="media-info"><h3>Episode #231: Benjamin Nazarian & Dr. Jason Wersland, Therabody</h3><div class="media-source">HALO Talks</div></div><div class="media-right"><span class="tag-sm podcast">Podcast</span><a class="media-link" href="https://www.halotalks.com/benjamin-nazarian-dr-jason-wersland-therabody/" target="_blank">Listen →</a></div></div>
+        <div class="media-entry"><div class="media-info"><h3>Establishing Your Brand's Credibility with Benjamin Nazarian</h3><div class="media-source">The Playbook · David Meltzer · YouTube</div></div><div class="media-right"><span class="tag-sm video">Video</span><a class="media-link" href="https://youtu.be/XcrvWGDYDrQ" target="_blank">Watch →</a></div></div>
+        <div class="media-entry"><div class="media-info"><h3>Ben Nazarian, CEO of Therabody, on the Next Evolution of Health & Wellness</h3><div class="media-source">How Success Happens · Audioboom</div></div><div class="media-right"><span class="tag-sm podcast">Podcast</span><a class="media-link" href="https://audioboom.com/posts/7946552-ben-nazarian-ceo-of-therabody-on-the-next-evolution-of-health-wellness" target="_blank">Listen →</a></div></div>
+        <div class="media-entry"><div class="media-info"><h3>Oxford Road Presents: Media's New Deal featuring Benjamin Nazarian</h3><div class="media-source">Oxford Road · YouTube</div></div><div class="media-right"><span class="tag-sm video">Video</span><a class="media-link" href="https://youtu.be/IMju0KqA8Xk" target="_blank">Watch →</a></div></div>
+        <div class="media-entry"><div class="media-info"><h3>Media's New Deal, Episode 10</h3><div class="media-source">Oxford Road</div></div><div class="media-right"><span class="tag-sm podcast">Podcast</span><a class="media-link" href="https://oxfordroad.com/thought-leadership/medias-new-deal-episode10/" target="_blank">Listen →</a></div></div>
+        <div class="media-entry"><div class="media-info"><h3>Episode 10: Ben Nazarian, CEO of Therabody</h3><div class="media-source">Global Player</div></div><div class="media-right"><span class="tag-sm podcast">Podcast</span><a class="media-link" href="https://www.globalplayer.com/podcasts/episodes/7DrpSdM/" target="_blank">Listen →</a></div></div>
+        <div class="media-entry"><div class="media-info"><h3>How Success Happened for Benjamin Nazarian, CEO of Therabody</h3><div class="media-source">San Antonio Express-News</div></div><div class="media-right"><span class="tag-sm press">Press</span><a class="media-link" href="https://www.mysanantonio.com/business/article/How-Success-Happened-for-Benjamin-Nazarian-CEO-16533325.php" target="_blank">Read →</a></div></div>
+        <div class="media-entry"><div class="media-info"><h3>One Tool to Treat It All — A Deep Dive into Therabody's TheraFace Pro</h3><div class="media-source">Spotify · featuring Benjamin Nazarian</div></div><div class="media-right"><span class="tag-sm podcast">Podcast</span><a class="media-link" href="https://open.spotify.com/episode/7f3yEDgli7K2NT9nfXlx84" target="_blank">Listen →</a></div></div>
+      </div>
+      <div class="site-footer"><span>© 2026 Nazarian Capital. All rights reserved.</span><span class="disc">For informational purposes only. Not an offer to sell or solicit securities.</span></div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="site-page" id="sp-contact">
+      <div class="page-header"><div class="eyebrow">Contact</div><h1>Get In Touch</h1><p>Nazarian Capital considers a limited number of new opportunities each year. If you are a founder seeking an operational partner, or representing a late-stage growth round, reach out below.</p></div>
+      <div class="contact-wrap">
+        <div class="form-row"><div class="form-group"><label>Name</label><input type="text" placeholder="Your full name"></div><div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div></div>
+        <div class="form-group"><label>Organization</label><input type="text" placeholder="Company or firm name"></div>
+        <div class="form-group"><label>How can we help?</label><select><option>Select an inquiry type</option><option>Operator Partnership Inquiry</option><option>Growth Capital</option><option>General</option></select></div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your company and what you're looking for..."></textarea></div>
+        <button class="site-btn" style="width:100%;text-align:center;display:block;">Send Inquiry</button>
+        <p class="contact-note">Nazarian Capital is a private investment vehicle. It does not manage third-party capital and is not registered as an investment adviser. All inquiries are reviewed personally and routed to info@nazariancapital.com.</p>
+      </div>
+      <div class="site-footer"><span>© 2026 Nazarian Capital. All rights reserved.</span><span class="disc">For informational purposes only. Not an offer to sell or solicit securities.</span></div>
+    </div>
+
+  </div><!-- end mockup-wrap -->
+</div>
+
+<script>
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+function showSitePage(id) {
+  document.querySelectorAll('.site-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.site-nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('sp-' + id).classList.add('active');
+  const nav = document.getElementById('snav-' + id);
+  if (nav) nav.classList.add('active');
+}
+</script>
+</body>
+</html>
