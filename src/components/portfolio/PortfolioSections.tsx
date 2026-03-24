@@ -3,17 +3,17 @@ import HoldingRow from '@/components/portfolio/HoldingRow'
 const FINANCIAL = [
   {
     name:        'Parkview Financial',
-    sector:      'Private Lending',
-    role:        'Strategic Advisor',
-    description: 'A leading private lender focused on transitional real estate. Nazarian Capital provides ongoing strategic advisory on growth, market positioning, and operational expansion.',
+    sector:      'Financial Services',
+    role:        'Active Strategic Partner',
+    description: 'Active strategic partner. Working directly with leadership to build operational infrastructure and scale the business.',
     badge:       'active' as const,
     url:         'https://www.parkviewfinancial.com',
   },
   {
     name:        'Constellation Capital',
-    sector:      'Real Estate Investment',
-    role:        'Active Operator Partner',
-    description: 'Commercial real estate lending platform. Nazarian Capital maintains an active strategic role, working directly with leadership on portfolio growth, capital strategy, and investor relations.',
+    sector:      'Financial Services',
+    role:        'Active Strategic Partner',
+    description: 'Active strategic partner. Embedded alongside the CEO to develop organizational systems and talent strategy for sustained expansion.',
     badge:       'active' as const,
   },
 ]
@@ -23,7 +23,7 @@ const HEALTH = [
     name:        'Therabody',
     sector:      'Consumer Health Tech',
     role:        'Growth Capital',
-    description: 'Creator of the Theragun and percussive therapy category. Nazarian Capital participated in a growth round alongside leading institutional investors.',
+    description: 'Pioneer of percussive therapy and recovery technology, redefining how athletes and consumers approach physical wellness.',
     badge:       'growth' as const,
     url:         'https://www.therabody.com',
   },
@@ -31,23 +31,23 @@ const HEALTH = [
     name:        'Poppi',
     sector:      'Better-for-You Beverage',
     role:        'Growth Capital',
-    description: 'Prebiotic soda brand disrupting the traditional soda category. Nazarian Capital participated in a growth round. Acquired by PepsiCo in 2025.',
+    description: 'A next-generation prebiotic soda brand that disrupted the legacy beverage category. Successfully exited following acquisition by PepsiCo in 2025.',
     badge:       'exited' as const,
   },
   {
     name:        'Magic Spoon',
     sector:      'Better-for-You CPG',
     role:        'Growth Capital',
-    description: 'High-protein, low-sugar breakfast cereal for adults, reimagining a legacy category with nutritional transparency and premium branding.',
+    description: 'Reinventing the breakfast category with high-protein, low-carb cereals built for adult consumers who refuse to compromise on nutrition or taste.',
     badge:       'growth' as const,
     url:         'https://www.magicspoon.com',
   },
   {
     name:        'Lensabl',
-    sector:      'DTC Vision',
-    role:        'Operator Partner',
-    description: 'Online eyewear and lens replacement platform. Nazarian Capital provided operational support on DTC scaling, marketing strategy, and retail channel development.',
-    badge:       'active' as const,
+    sector:      'Vision Care',
+    role:        'Growth Capital',
+    description: 'The modern vision care platform making prescription eyewear accessible, affordable, and fully online.',
+    badge:       'growth' as const,
     url:         'https://www.lensabl.com',
   },
 ]
@@ -57,14 +57,14 @@ const GROWTH = [
     name:        'SpaceX',
     sector:      'Aerospace & Defense',
     role:        'Growth Capital',
-    description: 'Participation in a secondary-market transaction for one of the world\'s most valuable private companies, led by Elon Musk.',
+    description: "The world's leading private aerospace company, redefining access to space and building infrastructure for a multi-planetary future.",
     badge:       'growth' as const,
   },
   {
     name:        'Diamond Foundry',
-    sector:      'Sustainable Materials',
+    sector:      'Deep Tech',
     role:        'Growth Capital',
-    description: 'The world\'s largest carbon-neutral diamond producer. Lab-grown diamonds at the intersection of technology, sustainability, and luxury.',
+    description: 'A deep-tech company accelerating the AI, electric vehicle, and wireless communications industries through single-crystal diamond wafers: a breakthrough material solving the thermal limitations constraining next-generation chips.',
     badge:       'growth' as const,
     url:         'https://www.diamondfoundry.com',
   },
@@ -95,12 +95,8 @@ export default function PortfolioSections() {
       <section className="bg-cream">
         <div className="section-wrap py-10">
           <p className="text-[11px] text-ash leading-[1.75] max-w-3xl">
-            The companies listed above represent a selection of investments and strategic
-            relationships. This is not an exhaustive list, and inclusion does not constitute
-            an endorsement or representation of future performance. Past investment performance
-            is not indicative of future results. All investment information is provided for
-            informational purposes only and does not constitute an offer to sell or a
-            solicitation to buy any securities.
+            Portfolio reflects select current and prior investments. Additional holdings are not
+            disclosed. Nothing on this page constitutes an offer to sell or solicit securities.
           </p>
         </div>
       </section>

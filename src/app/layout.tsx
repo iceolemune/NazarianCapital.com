@@ -27,11 +27,27 @@ export const metadata: Metadata = {
     template: '%s | Nazarian Capital',
   },
   description:
-    'A private family office investing at two ends of the growth curve — partnering with founders who need operational expertise, and deploying capital into established market leaders.',
+    'A private family office investing at two ends of the growth curve, partnering with founders who need operational expertise, and deploying capital into established market leaders.',
   metadataBase: new URL('https://nazariancapital.com'),
   openGraph: {
-    siteName: 'Nazarian Capital',
-    type:     'website',
+    siteName:    'Nazarian Capital',
+    type:        'website',
+    title:       'Nazarian Capital',
+    description: 'A private family office investing at two ends of the growth curve.',
+    images: [
+      {
+        url:    '/opengraph-image',
+        width:  1200,
+        height: 630,
+        alt:    'Nazarian Capital',
+      },
+    ],
+  },
+  twitter: {
+    card:        'summary_large_image',
+    title:       'Nazarian Capital',
+    description: 'A private family office investing at two ends of the growth curve.',
+    images:      ['/opengraph-image'],
   },
 }
 

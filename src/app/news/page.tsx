@@ -11,9 +11,9 @@ export default function NewsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="In the News"
-        headline="Portfolio Updates &amp;<br>Media Coverage"
-        subheadline="Recent developments across the Nazarian Capital portfolio and selected press coverage."
+        eyebrow="News"
+        headline="In the News"
+        subheadline="A running record of milestones, announcements, and developments across the Nazarian Capital portfolio."
       />
       <NewsContent />
     </>

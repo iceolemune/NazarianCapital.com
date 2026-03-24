@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
+import { Resend } from 'resend'
 
 // ── Rate limiter ──────────────────────────────────────────────────────────────
 // 3 requests per 10 minutes per IP (per security instructions)
@@ -101,36 +101,28 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Send email ──────────────────────────────────────────────────────────────
-  const smtpHost    = process.env.SMTP_HOST
-  const smtpPort    = parseInt(process.env.SMTP_PORT ?? '587', 10)
-  const smtpUser    = process.env.SMTP_USER
-  const smtpPass    = process.env.SMTP_PASS
+  const apiKey     = process.env.RESEND_API_KEY
   const contactDest = process.env.CONTACT_EMAIL ?? 'info@nazariancapital.com'
 
-  if (!smtpHost || !smtpUser || !smtpPass) {
-    console.error('Contact form: SMTP environment variables are not configured.')
+  if (!apiKey) {
+    console.error('Contact form: RESEND_API_KEY environment variable is not configured.')
     return fail('Email service is temporarily unavailable. Please try again later.', 503)
   }
 
   const inquiryLabels: Record<string, string> = {
-    'operator-partnership': 'Operator Partnership',
+    'operator-partnership': 'Operator Partnership Inquiry',
     'growth-capital':       'Growth Capital',
-    'general':              'General Inquiry',
+    'general':              'General',
   }
 
-  const transporter = nodemailer.createTransport({
-    host:   smtpHost,
-    port:   smtpPort,
-    secure: smtpPort === 465,
-    auth:   { user: smtpUser, pass: smtpPass },
-  })
+  const resend = new Resend(apiKey)
 
   try {
-    await transporter.sendMail({
-      from:    `"Nazarian Capital Contact" <${smtpUser}>`,
-      to:      contactDest,
-      replyTo: cleanEmail,
-      subject: `New Inquiry: ${inquiryLabels[inquiryType]} — ${cleanName}`,
+    await resend.emails.send({
+      from:     'Nazarian Capital <onboarding@resend.dev>',
+      to:       contactDest,
+      replyTo:  cleanEmail,
+      subject:  `New Inquiry: ${inquiryLabels[inquiryType]} from ${cleanName}`,
       text: [
         `Name: ${cleanName}`,
         `Email: ${cleanEmail}`,
@@ -142,7 +134,7 @@ export async function POST(req: NextRequest) {
       ].join('\n'),
     })
   } catch {
-    console.error('Contact form: failed to send email via SMTP.')
+    console.error('Contact form: failed to send email via Resend.')
     return fail('Failed to send your message. Please try again later.', 503)
   }
 

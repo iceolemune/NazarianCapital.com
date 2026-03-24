@@ -2,12 +2,12 @@ const TEAM = [
   {
     name: 'Benjamin Nazarian',
     role: 'Founder & Principal',
-    bio:  'Seasoned operator and investor with decades of experience founding, scaling, and advising companies across real estate, technology, and consumer markets. Founder of Omninet Capital and active strategic partner at Parkview Financial and Constellation Capital. Benjamin brings hands-on operational expertise in business planning, DTC-to-retail expansion, marketing, and organizational scaling.',
+    bio:  'Benjamin Nazarian is a seasoned operator and investor with decades of experience founding, scaling, and advising companies across real estate, technology, and consumer markets. He is the founder of Omninet Capital, a multifamily real estate platform, and serves as an active strategic partner to growth-stage companies through his roles at Parkview Financial and Constellation Capital. Benjamin brings hands-on operational expertise in business planning, DTC-to-retail expansion, marketing, and organizational scaling: the exact challenges most founders face for the first time. Nazarian Capital is the expression of that experience, deployed as capital.',
   },
   {
     name: 'Sienna Nazarian',
-    role: 'Scout — Health & Wellness',
-    bio:  'Focuses on identifying early-stage consumer product companies in health and wellness. With a background in product design engineering, she brings a founder-level lens to evaluating how products are built, differentiated, and positioned for scale. Her coverage expands Nazarian Capital\'s reach into one of the fastest-growing segments of the consumer market.',
+    role: 'Scout, Health & Wellness',
+    bio:  'Sienna focuses on identifying early-stage consumer product companies in the health and wellness space. With a background in product design engineering, she brings a founder-level lens to evaluating how products are built, differentiated, and positioned for scale. Her coverage expands Nazarian Capital\'s reach into one of the fastest-growing segments of the consumer market.',
   },
 ]
 

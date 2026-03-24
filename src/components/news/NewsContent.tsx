@@ -5,49 +5,114 @@ const NEWS_ENTRIES = [
   {
     company:  'SpaceX',
     date:     'March 2026',
-    headline: 'SpaceX Valuation Surpasses $350 Billion in Latest Secondary Transaction',
-    body:     'SpaceX closed a secondary tender offer valuing the company at over $350 billion, cementing its position as the most valuable private company in the world. Nazarian Capital participated in a prior secondary tranche, reflecting conviction in SpaceX\'s long-term position across commercial launch, Starlink broadband, and next-generation spacecraft development.',
+    headline: "SpaceX Completes Starship's Seventh Test Flight",
+    body:     'Full booster catch and reusability milestones bring the program closer to commercial and deep-space operations.',
   },
   {
     company:  'Diamond Foundry',
     date:     'February 2026',
-    headline: 'Diamond Foundry Expands Luxury Partnership Network',
-    body:     'Diamond Foundry secured new partnerships with leading luxury fashion houses and continued expansion of its VRAI direct-to-consumer brand, bringing lab-grown diamonds into premium retail environments globally. Nazarian Capital holds a position in the company\'s growth equity round.',
+    headline: 'Diamond Foundry Announces Expansion of Diamond Wafer Production for AI Applications',
+    body:     'Scale-up in single-crystal diamond wafer capacity targets the growing demand for thermal management solutions in AI compute chips.',
+  },
+  {
+    company:  'Therabody',
+    date:     'January 2026',
+    headline: 'Therabody Launches Next-Generation Recovery Platform',
+    body:     'Expanded beyond percussive therapy into a connected wellness ecosystem for both professional athletes and everyday consumers.',
   },
   {
     company:  'Magic Spoon',
     date:     'December 2025',
-    headline: 'Magic Spoon Hits Nationwide Retail Availability at Costco',
-    body:     'Following major distribution wins at Target, Walmart, and Whole Foods, Magic Spoon secured placement at Costco warehouses nationwide, marking a significant milestone in its transition from a DTC-native brand to a full-scale CPG business.',
+    headline: 'Magic Spoon Expands Retail Distribution Nationwide',
+    body:     "Major expansion into leading national grocery chains marks the brand's evolution from DTC pioneer to mainstream consumer staple.",
   },
   {
     company:  'Lensabl',
-    date:     'September 2025',
-    headline: 'Lensabl Launches Vision Benefits Platform for Employers',
-    body:     'Lensabl announced Lensabl+, a direct-to-employer vision benefits solution that bypasses traditional insurance infrastructure. The platform positions the company to compete in the multi-billion dollar vision benefits market.',
-  },
-  {
-    company:  'Poppi',
-    date:     'March 2025',
-    headline: 'PepsiCo Acquires Poppi for $1.65 Billion',
-    body:     'PepsiCo completed its acquisition of Poppi, the prebiotic soda brand, for $1.65 billion. The deal represents one of the largest exits in better-for-you beverage history and validates the long-term consumer shift toward functional, low-sugar alternatives.',
+    date:     'November 2025',
+    headline: 'Lensabl Partners with Major Vision Insurance Providers',
+    body:     'Partnerships with leading vision insurance networks make the platform accessible to millions of new customers nationwide.',
   },
 ]
 
 const MEDIA_ENTRIES = [
-  { title: 'Benjamin Nazarian on Operator-Led Investing',    source: 'Private Equity Insider',     type: 'Video'   as const },
-  { title: 'Inside the Lab-Grown Diamond Market',            source: 'Bloomberg Technology',        type: 'Press'   as const },
-  { title: 'How Prebiotic Soda Conquered Gen Z',             source: 'Fast Company',                type: 'Press'   as const },
-  { title: 'SpaceX Secondary Markets and Retail Access',     source: 'The Information',             type: 'Press'   as const },
-  { title: 'Lensabl: Reimagining the Vision Category',       source: 'DTC Founders Podcast',        type: 'Podcast' as const },
-  { title: 'The Rise of Health-First Consumer Brands',       source: 'Founder Stories Pod',         type: 'Podcast' as const },
-  { title: 'From Real Estate to Venture: Benjamin Nazarian', source: 'LA Business Journal',         type: 'Press'   as const },
-  { title: 'Operator Capital vs. Traditional VC',            source: 'Invest Like the Best',        type: 'Podcast' as const },
-  { title: 'Magic Spoon\'s Path to National Retail',         source: 'CPG Weekly',                  type: 'Press'   as const },
-  { title: 'Building for the Long Game',                     source: 'Meridian Business Review',    type: 'Video'   as const },
-  { title: 'The New Consumer Wellness Stack',                source: 'Health Innovations Summit',   type: 'Video'   as const },
-  { title: 'Parkview Financial: Private Credit in Practice', source: 'Alt Investments Today',       type: 'Press'   as const },
-  { title: 'Inside Diamond Foundry\'s Supply Chain',         source: 'Material Futures Podcast',    type: 'Podcast' as const },
+  {
+    title:  'CNBC: Benjamin Nazarian and Maria Sharapova on Investing in Wellness Tech Company Therabody',
+    source: 'CNBC',
+    type:   'Video'   as const,
+    url:    'https://youtu.be/CeJ0yur6sfQ',
+  },
+  {
+    title:  'Elevating Wellness & Recovery with Therabody',
+    source: 'Bloomberg Podcast',
+    type:   'Podcast' as const,
+    url:    'https://www.bloomberg.com/news/audio/2021-06-23/elevating-wellness-recovery-with-therabody-podcast',
+  },
+  {
+    title:  'Montgomery Summit: The Future of Disruption with Benjamin Nazarian',
+    source: 'Montgomery Summit',
+    type:   'Video'   as const,
+    url:    'https://youtu.be/BbtR-6_LDvU',
+  },
+  {
+    title:  'Wellness Technology Revolution with Therabody',
+    source: 'TD Securities — Retail Visionaries Series',
+    type:   'Podcast' as const,
+    url:    'https://www.tdsecurities.com/ca/en/tdc-retail-visionaries-wellness-technology-revolution',
+  },
+  {
+    title:  '#104: Benjamin Nazarian, CEO of Therabody',
+    source: 'Fitt Insider Podcast',
+    type:   'Podcast' as const,
+    url:    'https://insider.fitt.co/104-benjamin-nazarian-ceo-of-therabody/',
+  },
+  {
+    title:  'Episode #231: Benjamin Nazarian & Dr. Jason Wersland, Therabody',
+    source: 'HALO Talks',
+    type:   'Podcast' as const,
+    url:    'https://www.halotalks.com/benjamin-nazarian-dr-jason-wersland-therabody/',
+  },
+  {
+    title:  "Establishing Your Brand's Credibility with Benjamin Nazarian",
+    source: 'The Playbook — David Meltzer',
+    type:   'Video'   as const,
+    url:    'https://youtu.be/XcrvWGDYDrQ',
+  },
+  {
+    title:  'Ben Nazarian, CEO of Therabody, on the Next Evolution of Health & Wellness',
+    source: 'How Success Happens — Audioboom',
+    type:   'Podcast' as const,
+    url:    'https://audioboom.com/posts/7946552-ben-nazarian-ceo-of-therabody-on-the-next-evolution-of-health-wellness',
+  },
+  {
+    title:  "Oxford Road Presents: Media's New Deal featuring Benjamin Nazarian",
+    source: 'Oxford Road',
+    type:   'Video'   as const,
+    url:    'https://youtu.be/IMju0KqA8Xk',
+  },
+  {
+    title:  "Media's New Deal, Episode 10",
+    source: 'Oxford Road',
+    type:   'Podcast' as const,
+    url:    'https://oxfordroad.com/thought-leadership/medias-new-deal-episode10/',
+  },
+  {
+    title:  'Episode 10: Ben Nazarian, CEO of Therabody',
+    source: 'Global Player',
+    type:   'Podcast' as const,
+    url:    'https://www.globalplayer.com/podcasts/episodes/7DrpSdM/',
+  },
+  {
+    title:  'How Success Happened for Benjamin Nazarian, CEO of Therabody',
+    source: 'San Antonio Express-News',
+    type:   'Press'   as const,
+    url:    'https://www.mysanantonio.com/business/article/How-Success-Happened-for-Benjamin-Nazarian-CEO-16533325.php',
+  },
+  {
+    title:  "One Tool to Treat It All — A Deep Dive into Therabody's TheraFace Pro",
+    source: 'Spotify',
+    type:   'Podcast' as const,
+    url:    'https://open.spotify.com/episode/7f3yEDgli7K2NT9nfXlx84',
+  },
 ]
 
 export default function NewsContent() {
@@ -56,7 +121,6 @@ export default function NewsContent() {
       {/* Portfolio news */}
       <section className="bg-white border-b border-rule">
         <div className="section-wrap py-14">
-          <p className="eyebrow text-ash mb-3">Portfolio Updates</p>
           <span className="gold-rule block mb-2" />
           {NEWS_ENTRIES.map((e) => (
             <NewsEntry key={e.company + e.date} {...e} />
@@ -67,7 +131,7 @@ export default function NewsContent() {
       {/* Media coverage table */}
       <section className="bg-cream">
         <div className="section-wrap py-14">
-          <p className="eyebrow text-ash mb-3">Media Coverage</p>
+          <p className="eyebrow text-navy mb-3">Media</p>
           <span className="gold-rule block mb-8" />
           <div className="overflow-x-auto">
             <table className="w-full">

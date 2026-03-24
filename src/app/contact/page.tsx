@@ -11,9 +11,9 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Get In Touch"
-        headline="Start the Conversation"
-        subheadline="We work with a small number of companies at a time. If you believe there is alignment, we want to hear from you."
+        eyebrow="Contact"
+        headline="Get In Touch"
+        subheadline="Nazarian Capital considers a limited number of new opportunities each year. If you are a founder seeking an operational partner, or representing a late-stage growth round, reach out below."
       />
 
       <section className="border-b border-rule bg-white">

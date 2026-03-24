@@ -12,9 +12,8 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader
-        eyebrow="About the Firm"
-        headline="An Operator's Perspective<br>on Capital"
-        subheadline="Nazarian Capital invests with a working knowledge of what it takes to build and grow a company, not just a theoretical one."
+        eyebrow="About"
+        headline="An Operator's Perspective on Capital"
       />
       <FirmStory />
       <TeamSection />

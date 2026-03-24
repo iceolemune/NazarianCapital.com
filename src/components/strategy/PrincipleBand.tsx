@@ -7,13 +7,9 @@ export default function PrincipleBand() {
           The Shared Principle
         </p>
         <blockquote className="font-magnolia italic text-[26px] sm:text-[32px] leading-[1.35] max-w-2xl">
-          &ldquo;The best returns come from companies that are run well,
-          not just funded well.&rdquo;
+          &ldquo;Is this a business worth owning for a decade? Nazarian Capital does not
+          chase trends. It backs passionate founders.&rdquo;
         </blockquote>
-        <p className="mt-6 text-[13px] text-cream/60 max-w-xl leading-[1.7]">
-          In both tracks, Nazarian Capital brings more than capital. It brings a working
-          knowledge of what it takes to build a company that lasts.
-        </p>
         <span className="gold-rule block mt-10 mx-auto" />
       </div>
     </section>

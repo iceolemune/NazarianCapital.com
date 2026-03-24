@@ -18,7 +18,7 @@ export default function PhilosophyBand() {
           href="/strategy"
           className="text-[12px] font-semibold text-white border border-white/30 px-8 py-3.5 rounded-[3px] hover:bg-white/10 transition-colors duration-200 tracking-[0.08em] uppercase"
         >
-          Learn Our Approach
+          Learn Our Approach &rarr;
         </Link>
       </div>
     </section>

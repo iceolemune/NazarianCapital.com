@@ -11,9 +11,9 @@ export default function PortfolioPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Selected Investments"
-        headline="A Portfolio Built on<br>Operational Conviction"
-        subheadline="Each holding reflects a view that the underlying business is led well, positioned in a durable category, and capable of compounding over time."
+        eyebrow="Portfolio"
+        headline="Selected Investments"
+        subheadline="A concentrated portfolio across two tracks: active operator partnerships with high-growth companies, and long-term capital positions in established market leaders."
       />
       <PortfolioSections />
     </>

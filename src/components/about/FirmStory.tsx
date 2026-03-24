@@ -37,7 +37,8 @@ export default function FirmStory() {
                 including founding and scaling Omninet Capital, a multifamily real estate platform,
                 and serving as an active strategic partner to portfolio companies through roles at
                 Parkview Financial and Constellation Capital. These are not advisory relationships.
-                They are working partnerships where the firm sits alongside the CEO.
+                They are working partnerships where the firm sits alongside the CEO, helping them
+                build the infrastructure, teams, and systems that sustain long-term growth.
               </p>
               <p>
                 Nazarian Capital also brings deep expertise and an extensive network in the health

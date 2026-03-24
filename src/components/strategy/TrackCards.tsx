@@ -1,33 +1,28 @@
 const TRACKS = [
   {
-    id:      '01',
-    label:   'Operator Partnerships',
-    accent:  'navy' as const,
-    tagline: 'For companies looking to grow faster with an experienced operator at the table.',
-    details: [
-      'Active board or advisory seat',
-      'Operational systems design across departments',
-      'DTC-to-retail channel expansion',
-      'Introductions to strategic partners and distribution networks',
-      'Marketing strategy and brand positioning',
-      'Organizational scaling and executive hiring',
+    id:     '01',
+    label:  'For Companies That Need More Than a Check',
+    accent: 'navy' as const,
+    tagline:'Investments in venture and growth-stage companies where Nazarian Capital takes an active role, working directly with the CEO to build the operational foundations that early-stage companies typically lack.',
+    details:[
+      'Working with the founder to develop the business plan and establish a clear path to scale',
+      'Developing cost-effective marketing plans with a disciplined focus on ROI',
+      'Guiding expansion from DTC into retail, across both domestic and international markets',
+      'Implementing operating systems, reporting, and accountability frameworks',
+      "Serving as a sounding board on strategy, culture, and the decisions that don't have obvious answers",
     ],
-    check:  'Target companies: consumer  products, health  and wellness, technology platform businesses generating at least $5M ARR',
-    size:   'Investment range: $500K – $5M',
   },
   {
-    id:      '02',
-    label:   'Growth Capital',
-    accent:  'gold' as const,
-    tagline: 'Co-investments in high-growth, category-defining companies.',
-    details: [
-      'Minority equity participation alongside top-tier venture and growth funds',
-      'Access to deals not available through traditional channels',
-      'Focus on companies with proven business models and clear paths to profitability',
-      'Consumer, health, technology, and real estate sectors',
+    id:     '02',
+    label:  'For Companies That Have Already Proven It',
+    accent: 'gold' as const,
+    tagline:'Selective, high-conviction positions in established companies with demonstrated market leadership. Passive, long-term capital placed with conviction.',
+    details:[
+      'Category leadership with emphasis on AI, defense tech, and fintech',
+      'A capital structure that respects existing investors',
+      'Management teams with a track record of execution',
+      'A long runway for continued value creation',
     ],
-    check:  'Target companies: late-stage private or pre-IPO companies',
-    size:   'Investment range: $500K – $2M',
   },
 ]
 
@@ -35,8 +30,15 @@ export default function TrackCards() {
   return (
     <section className="border-b border-rule bg-white">
       <div className="section-wrap py-20">
+
+        {/* Intro */}
+        <p className="text-[14px] text-smoke leading-[1.8] max-w-2xl mb-12">
+          Nazarian Capital takes a deliberate, two-track approach to investing, each driven by a
+          different kind of conviction, and each designed to generate returns over a long time horizon.
+        </p>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {TRACKS.map(({ id, label, accent, tagline, details, check, size }) => (
+          {TRACKS.map(({ id, label, accent, tagline, details }) => (
             <div
               key={id}
               className={`rounded-[4px] border border-rule p-10 flex flex-col gap-8 ${
@@ -61,11 +63,6 @@ export default function TrackCards() {
                   </li>
                 ))}
               </ul>
-
-              <div className="space-y-1 pt-2 border-t border-rule">
-                <p className="text-[11.5px] text-smoke leading-[1.6]">{check}</p>
-                <p className="text-[11.5px] text-smoke leading-[1.6]">{size}</p>
-              </div>
             </div>
           ))}
         </div>

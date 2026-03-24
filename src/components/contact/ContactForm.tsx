@@ -4,10 +4,10 @@ import { useState, FormEvent } from 'react'
 import { RefreshCw } from 'lucide-react'
 
 const INQUIRY_TYPES = [
-  { value: '',                       label: 'Select an inquiry type' },
-  { value: 'operator-partnership',   label: 'Operator Partnership'   },
-  { value: 'growth-capital',         label: 'Growth Capital'         },
-  { value: 'general',                label: 'General Inquiry'        },
+  { value: '',                         label: 'Select an inquiry type'     },
+  { value: 'operator-partnership',     label: 'Operator Partnership Inquiry' },
+  { value: 'growth-capital',           label: 'Growth Capital'               },
+  { value: 'general',                  label: 'General'                      },
 ]
 
 const MAX_LENGTHS = {
@@ -127,7 +127,7 @@ export default function ContactForm() {
       {/* Inquiry type */}
       <div>
         <label className="block text-[11px] font-semibold text-charcoal uppercase tracking-wide mb-1.5">
-          Inquiry Type <span className="text-navy">*</span>
+          How can we help? <span className="text-navy">*</span>
         </label>
         <select
           required
@@ -181,14 +181,14 @@ export default function ContactForm() {
             Sending...
           </>
         ) : (
-          'Send Message'
+          'Send Inquiry'
         )}
       </button>
 
       <p className="text-[11px] text-ash leading-[1.7]">
-        Nazarian Capital is a private investment vehicle. This form is intended for founders,
-        operators, and institutional co-investors. All inquiries are reviewed and responded
-        to directly.
+        Nazarian Capital is a private investment vehicle. It does not manage third-party
+        capital and is not registered as an investment adviser. All inquiries are reviewed
+        personally and routed to info@nazariancapital.com.
       </p>
     </form>
   )
