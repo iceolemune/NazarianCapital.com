@@ -1,4 +1,10 @@
 import HoldingRow from '@/components/portfolio/HoldingRow'
+import ConstellationLogo  from '@/app/assets/CONSTELLATION.jpeg'
+import TherabodyLogo      from '@/app/assets/Therabody.jpeg'
+import PoppiLogo          from '@/app/assets/Poppi.png'
+import LensablLogo        from '@/app/assets/Lensabl.jpeg'
+import SpaceXLogo         from '@/app/assets/Space X.jpeg'
+import DiamondFoundryLogo from '@/app/assets/Diamond Foundry.jpeg'
 
 const FINANCIAL = [
   {
@@ -15,6 +21,7 @@ const FINANCIAL = [
     role:        'Active Strategic Partner',
     description: 'Active strategic partner. Embedded alongside the CEO to develop organizational systems and talent strategy for sustained expansion.',
     badge:       'active' as const,
+    logo:        ConstellationLogo,
   },
 ]
 
@@ -26,6 +33,7 @@ const HEALTH = [
     description: 'Pioneer of percussive therapy and recovery technology, redefining how athletes and consumers approach physical wellness.',
     badge:       'growth' as const,
     url:         'https://www.therabody.com',
+    logo:        TherabodyLogo,
   },
   {
     name:        'Poppi',
@@ -33,6 +41,7 @@ const HEALTH = [
     role:        'Growth Capital',
     description: 'A next-generation prebiotic soda brand that disrupted the legacy beverage category. Successfully exited following acquisition by PepsiCo in 2025.',
     badge:       'exited' as const,
+    logo:        PoppiLogo,
   },
   {
     name:        'Magic Spoon',
@@ -49,6 +58,7 @@ const HEALTH = [
     description: 'The modern vision care platform making prescription eyewear accessible, affordable, and fully online.',
     badge:       'growth' as const,
     url:         'https://www.lensabl.com',
+    logo:        LensablLogo,
   },
 ]
 
@@ -59,6 +69,7 @@ const GROWTH = [
     role:        'Growth Capital',
     description: "The world's leading private aerospace company, redefining access to space and building infrastructure for a multi-planetary future.",
     badge:       'growth' as const,
+    logo:        SpaceXLogo,
   },
   {
     name:        'Diamond Foundry',
@@ -67,6 +78,7 @@ const GROWTH = [
     description: 'A deep-tech company accelerating the AI, electric vehicle, and wireless communications industries through single-crystal diamond wafers: a breakthrough material solving the thermal limitations constraining next-generation chips.',
     badge:       'growth' as const,
     url:         'https://www.diamondfoundry.com',
+    logo:        DiamondFoundryLogo,
   },
 ]
 

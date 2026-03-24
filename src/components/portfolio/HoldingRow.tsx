@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image, { type StaticImageData } from 'next/image'
 
 type BadgeVariant = 'active' | 'growth' | 'exited'
 
@@ -9,6 +10,7 @@ interface HoldingProps {
   description: string
   badge:       BadgeVariant
   url?:        string
+  logo?:       StaticImageData
 }
 
 const BADGE_LABELS: Record<BadgeVariant, string> = {
@@ -24,12 +26,23 @@ const BADGE_CLASS: Record<BadgeVariant, string> = {
 }
 
 export default function HoldingRow({
-  name, sector, role, description, badge, url,
+  name, sector, role, description, badge, url, logo,
 }: HoldingProps) {
   return (
     <div className="group flex flex-col sm:flex-row sm:items-start gap-4 py-7 border-b border-rule last:border-0">
-      {/* Name + meta */}
+      {/* Logo + Name + meta */}
       <div className="sm:w-[220px] flex-shrink-0">
+        {logo && (
+          <div className="mb-3 w-14 h-14 rounded-2xl bg-white border border-rule overflow-hidden flex items-center justify-center">
+            <Image
+              src={logo}
+              alt={`${name} logo`}
+              width={56}
+              height={56}
+              className="object-contain w-full h-full p-1"
+            />
+          </div>
+        )}
         {url ? (
           <Link
             href={url}

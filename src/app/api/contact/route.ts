@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
+import nodemailer from 'nodemailer'
 
 // ── Rate limiter ──────────────────────────────────────────────────────────────
 // 3 requests per 10 minutes per IP (per security instructions)
@@ -101,11 +101,12 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Send email ──────────────────────────────────────────────────────────────
-  const apiKey     = process.env.RESEND_API_KEY
-  const contactDest = process.env.CONTACT_EMAIL ?? 'info@nazariancapital.com'
+  const smtpUser    = process.env.SMTP_USER
+  const smtpPass    = process.env.SMTP_PASS
+  const contactDest = process.env.CONTACT_EMAIL ?? smtpUser
 
-  if (!apiKey) {
-    console.error('Contact form: RESEND_API_KEY environment variable is not configured.')
+  if (!smtpUser || !smtpPass) {
+    console.error('Contact form: SMTP_USER or SMTP_PASS environment variable is not configured.')
     return fail('Email service is temporarily unavailable. Please try again later.', 503)
   }
 
@@ -115,11 +116,19 @@ export async function POST(req: NextRequest) {
     'general':              'General',
   }
 
-  const resend = new Resend(apiKey)
+  const transporter = nodemailer.createTransport({
+    host:   'smtpout.secureserver.net',
+    port:   465,
+    secure: true,
+    auth: {
+      user: smtpUser,
+      pass: smtpPass,
+    },
+  })
 
   try {
-    await resend.emails.send({
-      from:     'Nazarian Capital <onboarding@resend.dev>',
+    await transporter.sendMail({
+      from:     smtpUser,
       to:       contactDest,
       replyTo:  cleanEmail,
       subject:  `New Inquiry: ${inquiryLabels[inquiryType]} from ${cleanName}`,
@@ -134,7 +143,7 @@ export async function POST(req: NextRequest) {
       ].join('\n'),
     })
   } catch {
-    console.error('Contact form: failed to send email via Resend.')
+    console.error('Contact form: failed to send email via SMTP.')
     return fail('Failed to send your message. Please try again later.', 503)
   }
 
