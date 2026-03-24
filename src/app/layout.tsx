@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
+import Script from 'next/script'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -59,6 +60,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${magnolia.variable}`}>
       <body className="font-sans bg-cream text-charcoal antialiased flex flex-col min-h-screen">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-YRGV0306SB"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-YRGV0306SB');
+          `}
+        </Script>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
