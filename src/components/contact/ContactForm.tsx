@@ -133,7 +133,13 @@ export default function ContactForm() {
           required
           value={inquiryType}
           onChange={(e) => setInquiryType(e.target.value)}
-          className="w-full border border-rule rounded-[3px] px-4 py-2.5 text-[13px] text-charcoal bg-white focus:outline-none focus:border-navy transition-colors appearance-none"
+          className="w-full border border-rule rounded-[3px] px-4 py-2.5 pr-10 text-[13px] text-charcoal bg-white focus:outline-none focus:border-navy transition-colors appearance-none cursor-pointer"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'right 12px center',
+            backgroundSize: '16px 16px',
+          }}
         >
           {INQUIRY_TYPES.map(({ value, label }) => (
             <option key={value} value={value} disabled={!value}>
