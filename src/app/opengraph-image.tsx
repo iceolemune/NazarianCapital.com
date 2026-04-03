@@ -2,22 +2,27 @@ import { ImageResponse } from 'next/og'
 import { readFile } from 'fs/promises'
 import path from 'path'
 
+export const runtime = 'nodejs'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
+
+function bufToArrayBuffer(buf: Buffer): ArrayBuffer {
+  const ab = new ArrayBuffer(buf.byteLength)
+  new Uint8Array(ab).set(buf)
+  return ab
+}
 
 export default async function OGImage() {
   const [fontBoldBuf, fontMediumBuf, photoBuffer] = await Promise.all([
     readFile(path.join(process.cwd(), 'src', 'fonts', 'MagnoliaBold.otf')),
     readFile(path.join(process.cwd(), 'src', 'fonts', 'MagnoliaMedium.otf')),
-    readFile(path.join(process.cwd(), 'src', 'app', 'assets', 'Ben_nazarian.webp')),
+    readFile(path.join(process.cwd(), 'src', 'app', 'assets', 'Ben_nazarian-gray.jpg')),
   ])
 
-  // next/og (satori) requires a proper ArrayBuffer — Node.js Buffer is a Uint8Array
-  // subclass whose .buffer property may be a shared pool; slice gives a clean copy.
-  const fontBold   = fontBoldBuf.buffer.slice(fontBoldBuf.byteOffset,   fontBoldBuf.byteOffset   + fontBoldBuf.byteLength)   as ArrayBuffer
-  const fontMedium = fontMediumBuf.buffer.slice(fontMediumBuf.byteOffset, fontMediumBuf.byteOffset + fontMediumBuf.byteLength) as ArrayBuffer
+  const fontBold   = bufToArrayBuffer(fontBoldBuf)
+  const fontMedium = bufToArrayBuffer(fontMediumBuf)
 
-  const photoSrc = `data:image/webp;base64,${photoBuffer.toString('base64')}`
+  const photoSrc = `data:image/jpeg;base64,${photoBuffer.toString('base64')}`
 
   return new ImageResponse(
     (
