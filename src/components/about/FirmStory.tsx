@@ -1,3 +1,6 @@
+import Image from 'next/image'
+import BenGray from '@/app/assets/Ben_nazarian-gray.jpg'
+
 const BELIEFS = [
   {
     title: 'Operational experience is the scarcest resource.',
@@ -52,16 +55,31 @@ export default function FirmStory() {
             </div>
           </div>
 
-          {/* Philosophy sidebar */}
-          <div className="border-l-[3px] border-navy pl-8 lg:pl-10">
-            <p className="eyebrow text-navy mb-6">What We Believe</p>
-            <div className="space-y-7">
-              {BELIEFS.map(({ title, body }) => (
-                <div key={title}>
-                  <p className="text-[13px] font-semibold text-charcoal leading-[1.4] mb-2">{title}</p>
-                  <p className="text-[12px] text-smoke leading-[1.7]">{body}</p>
-                </div>
-              ))}
+          {/* Photo + Philosophy sidebar */}
+          <div className="flex flex-col gap-10 border-l-[3px] border-navy pl-8 lg:pl-10">
+            {/* Benjamin's photo */}
+            <div className="relative w-full overflow-hidden rounded-[4px] border border-rule" style={{ aspectRatio: '4/5' }}>
+              <Image
+                src={BenGray}
+                alt="Benjamin Nazarian, Founder & Principal of Nazarian Capital"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 35vw"
+                priority
+              />
+            </div>
+
+            {/* Philosophy sidebar */}
+            <div>
+              <p className="eyebrow text-navy mb-6">What We Believe</p>
+              <div className="space-y-7">
+                {BELIEFS.map(({ title, body }) => (
+                  <div key={title}>
+                    <p className="text-[13px] font-semibold text-charcoal leading-[1.4] mb-2">{title}</p>
+                    <p className="text-[12px] text-smoke leading-[1.7]">{body}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
