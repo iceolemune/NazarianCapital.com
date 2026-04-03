@@ -6,11 +6,16 @@ export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 export default async function OGImage() {
-  const [fontBold, fontMedium, photoBuffer] = await Promise.all([
+  const [fontBoldBuf, fontMediumBuf, photoBuffer] = await Promise.all([
     readFile(path.join(process.cwd(), 'src', 'fonts', 'MagnoliaBold.otf')),
     readFile(path.join(process.cwd(), 'src', 'fonts', 'MagnoliaMedium.otf')),
     readFile(path.join(process.cwd(), 'src', 'app', 'assets', 'Ben_nazarian.webp')),
   ])
+
+  // next/og (satori) requires a proper ArrayBuffer — Node.js Buffer is a Uint8Array
+  // subclass whose .buffer property may be a shared pool; slice gives a clean copy.
+  const fontBold   = fontBoldBuf.buffer.slice(fontBoldBuf.byteOffset,   fontBoldBuf.byteOffset   + fontBoldBuf.byteLength)   as ArrayBuffer
+  const fontMedium = fontMediumBuf.buffer.slice(fontMediumBuf.byteOffset, fontMediumBuf.byteOffset + fontMediumBuf.byteLength) as ArrayBuffer
 
   const photoSrc = `data:image/webp;base64,${photoBuffer.toString('base64')}`
 
