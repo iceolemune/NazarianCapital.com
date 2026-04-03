@@ -58,6 +58,24 @@ export default function ContactPage() {
                   ))}
                 </ul>
               </div>
+
+              <div className="mt-8 p-6 rounded-[4px] border border-rule">
+                <p className="text-[11px] font-semibold text-navy uppercase tracking-wide mb-5">
+                  What Happens Next
+                </p>
+                <div className="space-y-5">
+                  {[
+                    { step: '01', text: 'We review your inquiry within 2 business days' },
+                    { step: '02', text: 'If there is a fit, we reach out to schedule an initial call' },
+                    { step: '03', text: 'Introductory meeting with Benjamin to explore the opportunity' },
+                  ].map(({ step, text }) => (
+                    <div key={step} className="flex items-start gap-4">
+                      <span className="text-[11px] font-semibold text-gold tracking-[0.1em] flex-shrink-0 mt-[2px]">{step}</span>
+                      <p className="text-[12px] text-smoke leading-[1.65]">{text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Right column: form */}

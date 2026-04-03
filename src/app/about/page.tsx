@@ -5,7 +5,7 @@ import TeamSection  from '@/components/about/TeamSection'
 
 export const metadata: Metadata = {
   title: 'About — Nazarian Capital',
-  description: 'Operator-led private investment firm founded by Benjamin Nazarian.',
+  description: 'Benjamin Nazarian is the founder of Nazarian Capital and co-founder of Therabody, which he scaled to $1B in revenue across 60 countries and 10,000 retail locations.',
 }
 
 export default function AboutPage() {

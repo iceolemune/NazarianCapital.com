@@ -29,7 +29,7 @@ const TYPE_LABEL: Record<string, string> = {
 
 export default function MediaTeaser() {
   return (
-    <section className="border-b border-rule bg-cream">
+    <section className="border-b border-rule bg-white">
       <div className="section-wrap py-20">
         <div className="flex items-end justify-between mb-10">
           <div>

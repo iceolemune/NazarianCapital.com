@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import PageHeader        from '@/components/PageHeader'
+import TrackRecord       from '@/components/portfolio/TrackRecord'
 import PortfolioSections from '@/components/portfolio/PortfolioSections'
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ export default function PortfolioPage() {
         headline="Selected Investments"
         subheadline="A concentrated portfolio across two tracks: active operator partnerships with high-growth companies, and long-term capital positions in established market leaders."
       />
+      <TrackRecord />
       <PortfolioSections />
     </>
   )

@@ -62,12 +62,12 @@ export default function HoldingRow({
       </div>
 
       {/* Description */}
-      <div className="flex-1" style={{ marginTop: logo ? '4.25rem' : '0' }}>
+      <div className={`flex-1${logo ? ' sm:mt-[4.25rem]' : ''}`}>
         <p className="text-[12.5px] text-charcoal leading-[1.7]">{description}</p>
       </div>
 
       {/* Badge — aligned to top of name, not logo */}
-      <div className="sm:ml-6 flex-shrink-0 flex flex-col gap-1.5 items-end" style={{ marginTop: logo ? '4.25rem' : '0' }}>
+      <div className={`sm:ml-6 flex-shrink-0 flex flex-col gap-1.5 items-end${logo ? ' sm:mt-[4.25rem]' : ''}`}>
         {founderBadge && (
           <span className="tag-founder">Co-Founder / CEO &amp; Angel Investor</span>
         )}
