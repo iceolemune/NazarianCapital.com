@@ -62,6 +62,8 @@
   .tag-active   { @apply bg-navy-tint text-navy   text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
   .tag-growth   { @apply bg-gold-tint text-[#A07820] text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
   .tag-exited   { @apply bg-[#F0F0F0] text-smoke  text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
+  .tag-founder  { @apply bg-[#EAF4EC] text-[#2A7A3A] text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
+  .tag-investor { @apply bg-[#F3EEFF] text-[#6B3FBF] text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
   .tag-video    { @apply bg-[#F0EDE8] text-smoke  text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
   .tag-podcast  { @apply bg-navy-tint text-navy   text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }
   .tag-press    { @apply bg-gold-tint text-[#A07820] text-[10px] font-semibold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] whitespace-nowrap; }

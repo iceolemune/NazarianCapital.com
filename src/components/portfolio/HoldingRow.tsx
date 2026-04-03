@@ -9,6 +9,9 @@ interface HoldingProps {
   role:        string
   description: string
   badge:       BadgeVariant
+  founderBadge?: boolean
+  exitedBadge?:  boolean
+  investorBadge?: boolean
   url?:        string
   logo?:       StaticImageData
 }
@@ -26,7 +29,7 @@ const BADGE_CLASS: Record<BadgeVariant, string> = {
 }
 
 export default function HoldingRow({
-  name, sector, role, description, badge, url, logo,
+  name, sector, role, description, badge, founderBadge, exitedBadge, investorBadge, url, logo,
 }: HoldingProps) {
   return (
     <div className="group flex flex-col sm:flex-row sm:items-start gap-4 py-7 border-b border-rule last:border-0">
@@ -59,14 +62,22 @@ export default function HoldingRow({
       </div>
 
       {/* Description */}
-      <div className="flex-1">
-        <p className="text-[12.5px] text-smoke leading-[1.75] italic mb-2">{role}</p>
+      <div className="flex-1" style={{ marginTop: logo ? '4.25rem' : '0' }}>
         <p className="text-[12.5px] text-charcoal leading-[1.7]">{description}</p>
       </div>
 
-      {/* Badge */}
-      <div className="sm:ml-6 flex-shrink-0">
+      {/* Badge — aligned to top of name, not logo */}
+      <div className="sm:ml-6 flex-shrink-0 flex flex-col gap-1.5 items-end" style={{ marginTop: logo ? '4.25rem' : '0' }}>
+        {founderBadge && (
+          <span className="tag-founder">Co-Founder / CEO &amp; Angel Investor</span>
+        )}
         <span className={BADGE_CLASS[badge]}>{BADGE_LABELS[badge]}</span>
+        {investorBadge && (
+          <span className="tag-investor">Investor</span>
+        )}
+        {exitedBadge && (
+          <span className="tag-exited">Exited</span>
+        )}
       </div>
     </div>
   )

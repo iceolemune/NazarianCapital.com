@@ -8,7 +8,7 @@ const TRACKS = [
       'Working with the founder to develop the business plan and establish a clear path to scale',
       'Developing cost-effective marketing plans with a disciplined focus on ROI',
       'Guiding expansion from DTC into retail, across both domestic and international markets',
-      'Implementing operating systems, reporting, and accountability frameworks',
+      'Developing products including selecting engineering firms and contract manufacturers in China',
       "Serving as a sounding board on strategy, culture, and the decisions that don't have obvious answers",
     ],
   },

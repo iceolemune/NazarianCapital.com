@@ -11,16 +11,18 @@ const FINANCIAL = [
     name:        'Parkview Financial',
     sector:      'Financial Services',
     role:        'Active Strategic Partner',
-    description: 'Active strategic partner. Working directly with leadership to build operational infrastructure and scale the business.',
+    description: 'Working directly with leadership to build operational infrastructure, scale the business and advise on critical strategic issues. Serve as a member of the Loan Committee.',
     badge:       'active' as const,
+    investorBadge: true,
     url:         'https://www.parkviewfinancial.com',
   },
   {
     name:        'Constellation Capital',
     sector:      'Financial Services',
     role:        'Active Strategic Partner',
-    description: 'Active strategic partner. Embedded alongside the CEO to develop organizational systems and talent strategy for sustained expansion.',
+    description: 'Embedded alongside the CEO to develop fundraising strategy, portfolio management and advise on strategic issues.  Serve as a member of the Investment Committee.',
     badge:       'active' as const,
+    investorBadge: true,
     logo:        ConstellationLogo,
   },
 ]
@@ -30,8 +32,9 @@ const HEALTH = [
     name:        'Therabody',
     sector:      'Consumer Health Tech',
     role:        'Growth Capital',
-    description: 'Pioneer of percussive therapy and recovery technology, redefining how athletes and consumers approach physical wellness.',
+    description: 'Pioneer of percussive therapy and recovery technology, redefining how athletes and consumers approach physical wellness. Co-founder and served as CEO.',
     badge:       'growth' as const,
+    founderBadge: true,
     url:         'https://www.therabody.com',
     logo:        TherabodyLogo,
   },
@@ -40,7 +43,8 @@ const HEALTH = [
     sector:      'Better-for-You Beverage',
     role:        'Growth Capital',
     description: 'A next-generation prebiotic soda brand that disrupted the legacy beverage category. Successfully exited following acquisition by PepsiCo in 2025.',
-    badge:       'exited' as const,
+    badge:       'growth' as const,
+    exitedBadge: true,
     logo:        PoppiLogo,
   },
   {
@@ -57,6 +61,7 @@ const HEALTH = [
     role:        'Growth Capital',
     description: 'The modern vision care platform making prescription eyewear accessible, affordable, and fully online.',
     badge:       'growth' as const,
+    exitedBadge: true,
     url:         'https://www.lensabl.com',
     logo:        LensablLogo,
   },
@@ -83,8 +88,8 @@ const GROWTH = [
 ]
 
 const SECTIONS = [
-  { title: 'Financial Services', holdings: FINANCIAL },
   { title: 'Health & Wellness',  holdings: HEALTH    },
+  { title: 'Financial Services', holdings: FINANCIAL },
   { title: 'Growth Capital',     holdings: GROWTH    },
 ]
 
@@ -94,7 +99,7 @@ export default function PortfolioSections() {
       {SECTIONS.map(({ title, holdings }) => (
         <section key={title} className="border-b border-rule bg-white">
           <div className="section-wrap py-14">
-            <p className="eyebrow text-navy mb-3">{title}</p>
+            <h2 className="text-[1.4rem] font-light text-charcoal mb-3">{title}</h2>
             <span className="gold-rule block mb-2" />
             {holdings.map((h) => (
               <HoldingRow key={h.name} {...h} />

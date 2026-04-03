@@ -7,6 +7,7 @@ type TeamMember = {
   role:  string
   photo: StaticImageData
   bio:   string
+  bio2?: string
 }
 
 const TEAM: TeamMember[] = [
@@ -14,7 +15,8 @@ const TEAM: TeamMember[] = [
     name:  'Benjamin Nazarian',
     role:  'Founder & Principal',
     photo: BenPhoto,
-    bio:   'Benjamin Nazarian is a seasoned operator and investor with decades of experience founding, scaling, and advising companies across real estate, technology, and consumer markets. He is the founder of Omninet Capital, a multifamily real estate platform, and serves as an active strategic partner to growth-stage companies through his roles at Parkview Financial and Constellation Capital. Benjamin brings hands-on operational expertise in business planning, DTC-to-retail expansion, marketing, and organizational scaling: the exact challenges most founders face for the first time. Nazarian Capital is the expression of that experience, deployed as capital.',
+    bio:   'Benjamin Nazarian is a seasoned operator and investor with decades of experience founding, scaling, and advising companies across consumer, real estate, and financial services. He is the Co-Founder of Therabody, a global leader in wellness technology best known for pioneering the Theragun and reshaping modern self-care. As CEO, he led the company to over $1 billion in sales across more than 60 countries and 10,000 retail locations, building one of the most recognized wellness brands in the world. He is also the Co-Founder of Omninet Capital, a national real estate firm.',
+    bio2:  'He works closely with founders, helping them turn ideas into meaningful, scalable businesses. Benjamin brings hands-on operational expertise in business planning, DTC-to-retail expansion, marketing, and organizational scaling, the exact challenges most founders face for the first time, and rarely have a seasoned operator alongside them to navigate. He serves as an active strategic partner to portfolio companies Parkview Financial and Constellation Capital. Nazarian Capital is the expression of that experience, deployed as capital.',
   },
   {
     name:  'Sienna Nazarian',
@@ -32,7 +34,7 @@ export default function TeamSection() {
         <span className="gold-rule mb-10 block" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl">
-          {TEAM.map(({ name, role, bio, photo }) => (
+          {TEAM.map(({ name, role, bio, bio2, photo }) => (
             <div
               key={name}
               className="bg-cream rounded-[4px] border border-rule p-8 hover:border-navy/30 transition-colors duration-200"
@@ -50,6 +52,9 @@ export default function TeamSection() {
               <h3 className="text-[15px] font-semibold text-charcoal mb-1">{name}</h3>
               <p className="eyebrow text-navy mb-5">{role}</p>
               <p className="text-[12px] text-smoke leading-[1.75]">{bio}</p>
+              {bio2 && (
+                <p className="text-[12px] text-smoke leading-[1.75] mt-3">{bio2}</p>
+              )}
             </div>
           ))}
         </div>
