@@ -1,15 +1,15 @@
 const BELIEFS = [
   {
     title: 'Operational experience is the scarcest resource.',
-    body:  'Most founders are building their first company. The challenges they face can only be navigated well with experience.',
+    body: 'Most founders are building their first company. The challenges they face can be navigated more easily with guidance from an experienced operator.',
   },
   {
     title: 'Patient capital outperforms impatient capital.',
-    body:  'The goal is never a quick exit. It is building something that lasts.',
+    body: 'The goal is never a quick exit. It is building something that lasts.',
   },
   {
     title: 'Resources matter as much as money.',
-    body:  'Portfolio companies gain access to an operational network and a founder who has been through the growth curve and come out the other side.',
+    body: 'Portfolio companies gain access to an operational network and a founder who has been through the growth curve and come out the other side.',
   },
 ]
 
@@ -32,17 +32,21 @@ export default function FirmStory() {
                 into retail across domestic and international markets.
               </p>
               <p>
-                That is the gap Nazarian Capital was built to fill. The firm draws on deep
-                operational experience built across real estate, technology, and private enterprise,
-                including founding and scaling Omninet Capital, a multifamily real estate platform,
-                and serving as an active strategic partner to portfolio companies through roles at
-                Parkview Financial and Constellation Capital. These are not advisory relationships.
-                They are working partnerships where the firm sits alongside the CEO, helping them
-                build the infrastructure, teams, and systems that sustain long-term growth.
+                That is the gap Nazarian Capital was built to fill. The firm draws on deep operational 
+                experience across consumer products, health and wellness, real estate, and technology. 
+                Benjamin's experience as CEO taking Therabody from inception to generating $1 billion 
+                in revenue across 60 countries is relevant to entrepreneurs who will face the same 
+                pressures and inflection points that determine whether a company scales or stalls. 
+                Before Therabody, he founded and scaled Omninet Capital, a multifamily real estate 
+                platform, and has since served as an active strategic partner to portfolio companies 
+                through roles at Parkview Financial and Constellation Capital. These are not advisory 
+                relationships. They are working partnerships where Benjamin sits alongside the CEO, 
+                helping them build the infrastructure, teams, and systems that sustain long-term growth.
               </p>
               <p>
-                Nazarian Capital also brings deep expertise and an extensive network in the health
-                and wellness industry, with a dedicated focus on identifying and investing in the
+                Nazarian Capital also brings deep expertise and an extensive network in DTC and retail 
+                multi-channel sales strategy, marketing, retail and international markets the health 
+                and wellness industry, with a dedicated focus on identifying and investing in the 
                 next generation of consumer health and wellness companies.
               </p>
             </div>

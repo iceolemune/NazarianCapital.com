@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Hero from '@/components/home/Hero'
 import ProofPoints from '@/components/home/ProofPoints'
 import NewsTeaser from '@/components/home/NewsTeaser'
+import MediaTeaser from '@/components/home/MediaTeaser'
 import PhilosophyBand from '@/components/home/PhilosophyBand'
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ export default function HomePage() {
     <>
       <Hero />
       <ProofPoints />
+      <MediaTeaser />
       <NewsTeaser />
       <PhilosophyBand />
     </>

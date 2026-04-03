@@ -26,12 +26,12 @@ const NEWS_ENTRIES = [
     headline: 'Magic Spoon Expands Retail Distribution Nationwide',
     body:     "Major expansion into leading national grocery chains marks the brand's evolution from DTC pioneer to mainstream consumer staple.",
   },
-  {
-    company:  'Lensabl',
-    date:     'November 2025',
-    headline: 'Lensabl Partners with Major Vision Insurance Providers',
-    body:     'Partnerships with leading vision insurance networks make the platform accessible to millions of new customers nationwide.',
-  },
+  // {
+  //   company:  'Lensabl',
+  //   date:     'November 2025',
+  //   headline: 'Lensabl Partners with Major Vision Insurance Providers',
+  //   body:     'Partnerships with leading vision insurance networks make the platform accessible to millions of new customers nationwide.',
+  // },
 ]
 
 const MEDIA_ENTRIES = [
@@ -118,18 +118,8 @@ const MEDIA_ENTRIES = [
 export default function NewsContent() {
   return (
     <>
-      {/* Portfolio news */}
-      <section className="bg-white border-b border-rule">
-        <div className="section-wrap py-14">
-          <span className="gold-rule block mb-2" />
-          {NEWS_ENTRIES.map((e) => (
-            <NewsEntry key={e.company + e.date} {...e} />
-          ))}
-        </div>
-      </section>
-
       {/* Media coverage table */}
-      <section className="bg-cream">
+      <section className="bg-white border-b border-rule">
         <div className="section-wrap py-14">
           <p className="eyebrow text-navy mb-3">Media</p>
           <span className="gold-rule block mb-8" />
@@ -149,6 +139,16 @@ export default function NewsContent() {
               </tbody>
             </table>
           </div>
+        </div>
+      </section>
+
+      {/* Portfolio news */}
+      <section className="bg-cream">
+        <div className="section-wrap py-14">
+          <span className="gold-rule block mb-2" />
+          {NEWS_ENTRIES.map((e) => (
+            <NewsEntry key={e.company + e.date} {...e} />
+          ))}
         </div>
       </section>
     </>
