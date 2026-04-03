@@ -61,13 +61,8 @@ export default function HoldingRow({
         <p className="text-[11.5px] text-smoke mt-1">{sector}</p>
       </div>
 
-      {/* Description */}
-      <div className={`flex-1${logo ? ' sm:mt-[4.25rem]' : ''}`}>
-        <p className="text-[12.5px] text-charcoal leading-[1.7]">{description}</p>
-      </div>
-
-      {/* Badge — aligned to top of name, not logo */}
-      <div className={`sm:ml-6 flex-shrink-0 flex flex-col gap-1.5 items-end${logo ? ' sm:mt-[4.25rem]' : ''}`}>
+      {/* Badge — mobile: before description; desktop: last column (order-3) */}
+      <div className={`sm:order-3 sm:ml-6 flex-shrink-0 flex flex-col gap-1.5 items-start sm:items-end${logo ? ' sm:mt-[4.25rem]' : ''}`}>
         {founderBadge && (
           <span className="tag-founder">Co-Founder / CEO &amp; Angel Investor</span>
         )}
@@ -78,6 +73,11 @@ export default function HoldingRow({
         {exitedBadge && (
           <span className="tag-exited">Exited</span>
         )}
+      </div>
+
+      {/* Description */}
+      <div className={`sm:order-2 flex-1${logo ? ' sm:mt-[4.25rem]' : ''}`}>
+        <p className="text-[12.5px] text-charcoal leading-[1.7]">{description}</p>
       </div>
     </div>
   )
