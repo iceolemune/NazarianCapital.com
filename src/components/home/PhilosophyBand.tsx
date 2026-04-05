@@ -14,6 +14,9 @@ export default function PhilosophyBand() {
           curve for the first time. That is where experience becomes the most valuable form
           of capital.
         </p>
+        <p className="text-[14px] text-white/60 leading-[1.85] max-w-[480px] mb-10">
+          Nazarian Capital serves as a hands-on investor advising management on strategic decisions.
+        </p>
         <Link
           href="/strategy"
           className="text-[12px] font-semibold text-white border border-white/30 px-8 py-3.5 rounded-[3px] hover:bg-white/10 transition-colors duration-200 tracking-[0.08em] uppercase"

@@ -20,9 +20,9 @@ export default function HomePage() {
       <StatStrip />
       <ProofPoints />
       <FeaturedIn />
+      <PhilosophyBand />
       <MediaTeaser />
       <NewsTeaser />
-      <PhilosophyBand />
     </>
   )
 }

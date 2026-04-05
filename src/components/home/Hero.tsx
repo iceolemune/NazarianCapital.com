@@ -16,7 +16,7 @@ export default function Hero() {
           <LogoMark size={420} />
         </div>
 
-        <p className="eyebrow text-ash mb-4 anim-fade-up">Private Family Office</p>
+        <h2 className="eyebrow text-[20px] text-ash mb-4 anim-fade-up">Private Family Office</h2>
         <span className="gold-rule mx-auto mb-7 anim-fade-up-d1" />
 
         <h1 className="text-[2.8rem] sm:text-[3.4rem] lg:text-[3.8rem] font-light leading-[1.14] text-charcoal max-w-3xl mb-8 anim-fade-up-d1">

@@ -8,7 +8,7 @@ export default function PageHeader({ eyebrow, headline, subheadline }: PageHeade
   return (
     <section className="border-b border-rule">
       <div className="section-wrap py-20 text-center">
-        <p className="eyebrow text-ash mb-4 anim-fade-up">{eyebrow}</p>
+        <h2 className="eyebrow text-[20px] text-ash mb-4 anim-fade-up">{eyebrow}</h2>
         <span className="gold-rule mx-auto mb-6 block anim-fade-up-d1" />
         <h1
           className="text-[2.6rem] lg:text-[3rem] font-light leading-[1.18] text-charcoal max-w-2xl mx-auto mb-6 anim-fade-up-d1"
